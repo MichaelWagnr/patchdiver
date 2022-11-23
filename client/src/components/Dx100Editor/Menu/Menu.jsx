@@ -1,15 +1,17 @@
 import styled from 'styled-components'
 import { Routes, Route, NavLink } from 'react-router-dom'
-import Main from './Main'
-import Save from './Save'
-import Theme from './Theme'
-import About from './About'
+import Main from './Main/Main'
+import Save from './Save/Save'
+import Theme from './Theme/Theme'
+import About from './About/About'
+import Load from './Load/Load'
 
 const Menu = ({ isActive, setTheme }) => {
 	return (
 		<>
 			<Navigation className={isActive ? 'active' : null}>
 				<Option to="menu/main">Main</Option>
+				<Option to="menu/Load">Load</Option>
 				<Option to="menu/save">Save</Option>
 				<Option to="menu/theme">Theme</Option>
 				<Option to="menu/about">About</Option>
@@ -17,6 +19,7 @@ const Menu = ({ isActive, setTheme }) => {
 			<MenuSection className={isActive ? 'active' : null}>
 				<Routes>
 					<Route path="menu/main" element={<Main />} />
+					<Route path="menu/load" element={<Load />} />
 					<Route path="menu/save" element={<Save />} />
 					<Route path="menu/theme" element={<Theme setTheme={setTheme} />} />
 					<Route path="menu/about" element={<About />} />

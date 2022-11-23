@@ -1,4 +1,4 @@
-import MenuView from './Menu.style'
+import MenuView from '../Menu.style'
 
 const Theme = ({ setTheme }) => {
 	return (

@@ -82,6 +82,10 @@ const GlobalStyles = createGlobalStyle`
   button:hover {
     cursor: pointer;
   }
+
+  h2 {
+    font-size: 1.5rem;
+  }
 `
 
 export default GlobalStyles

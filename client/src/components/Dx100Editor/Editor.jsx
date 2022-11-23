@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { MidiContext } from '../../contexts/MidiContext'
 import { PatchContext } from '../../contexts/PatchContext'
 import DisplaySection from './Display/DisplaySection'
 import { init, parseVoice } from './Dx100.parseVoice'
@@ -8,7 +9,7 @@ import Menu from './Menu/Menu'
 import OpSection from './OpSection/OpSection'
 import StatusBar from './StatusBar'
 
-function Editor() {
+const Editor = () => {
 	const { setVoice, setPatch } = useContext(PatchContext)
 	const [isActive, setIsActive] = useState(false)
 	const [theme, setTheme] = useState('default')

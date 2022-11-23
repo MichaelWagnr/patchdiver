@@ -1,4 +1,4 @@
-import MenuView from './Menu.style'
+import MenuView from '../Menu.style'
 
 const Save = () => {
 	return <MenuView>Save</MenuView>
