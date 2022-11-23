@@ -2,19 +2,7 @@ import { useContext } from 'react'
 import styled from 'styled-components'
 import { MidiContext } from '../../contexts/MidiContext'
 import { SiMidi } from 'react-icons/si'
-import { GrSend } from 'react-icons/gr'
-import { GoPlug } from 'react-icons/go'
-
-import {
-	MdArrowRight,
-	MdPiano,
-	MdContactless,
-	MdLaunch,
-	MdSettingsInputSvideo,
-	MdOutlineContactless,
-	MdOutlineCable,
-	MdOutlineRssFeed,
-} from 'react-icons/md'
+import { MdPiano } from 'react-icons/md'
 
 const StatusBar = ({ isActive, setIsActive }) => {
 	const { midi, requestMidi } = useContext(MidiContext)
@@ -31,18 +19,18 @@ const StatusBar = ({ isActive, setIsActive }) => {
 					<span></span>
 				</label>
 			</MenuButton>
-			<div className="connect">
+
+			<div>
 				{!midi || midi.output.state === 'disconnected' ? (
 					<button
 						onClick={() => requestMidi({ logInput: true })}
 						className="connect">
 						<MdPiano />
 						<SiMidi className="midi-icon" />
-						{/* <MdOutlineCable /> */}
 					</button>
 				) : (
-					<>
-						<MidiConnection>
+					<MidiIsConnected>
+						<MidiPortInfo>
 							<p>
 								<span className="ports">Input</span> | {midi.input.manufacturer}{' '}
 								{midi.input.name} <span>{midi.input.state} </span>
@@ -52,12 +40,39 @@ const StatusBar = ({ isActive, setIsActive }) => {
 								{midi.output.manufacturer} {midi.output.name}{' '}
 								<span>{midi.output.state} </span>
 							</p>
-						</MidiConnection>
-						<button>Test</button>
-					</>
+						</MidiPortInfo>
+						{midi && <button className="send-voice">Send Voice</button>}
+						{midi && (
+							<MidiKeys>
+								<div className="row1">
+									<Key>w</Key>
+									<Key>e</Key>
+									<div className="large space"></div>
+									<Key>t</Key>
+									<Key>y</Key>
+									<Key>u</Key>
+									<div className="xl space"></div>
+									<Key>+</Key>
+								</div>
+								<div className="row2">
+									<Key>a</Key>
+									<Key>s</Key>
+									<Key>d</Key>
+									<div className="space"></div>
+									<Key>f</Key>
+									<Key>g</Key>
+									<Key>h</Key>
+									<Key>j</Key>
+									<div className="space"></div>
+									<Key>k</Key>
+									<div className="space"></div>
+									<Key>-</Key>
+								</div>
+							</MidiKeys>
+						)}
+					</MidiIsConnected>
 				)}
 			</div>
-			{midi && <button>Send Voice</button>}
 		</Container>
 	)
 }
@@ -68,10 +83,12 @@ const Container = styled.div`
 	width: 1330px;
 	grid-row: 3;
 	grid-column: span 5;
-	display: flex;
+	display: grid;
+	grid-template-columns: 30px 1fr;
+	grid-template-rows: 44px;
 	gap: 22px;
-	align-items: center;
-	padding: 5px 10px;
+	align-content: center;
+	padding: 30px 10px;
 	background-color: var(--fm-status-bg);
 	position: relative;
 
@@ -99,14 +116,25 @@ const Container = styled.div`
 			}
 		}
 	}
+`
 
-	.connect {
-		flex: 1;
+const MidiIsConnected = styled.div`
+	display: grid;
+	grid-template-rows: 44px;
+	grid-template-columns: 875px 100px 1fr;
+	align-items: center;
+
+	.send-voice {
+		height: 37px;
+		width: 100px;
+		position: relative;
+		bottom: 5px;
 	}
 `
 
-const MidiConnection = styled.div`
+const MidiPortInfo = styled.div`
 	height: 100%;
+	color: var(--fm-typography);
 
 	span {
 		font-weight: bold;
@@ -116,6 +144,42 @@ const MidiConnection = styled.div`
 			display: inline-block;
 		}
 	}
+`
+
+const MidiKeys = styled.div`
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	padding: 1px 0px 10px 33px;
+
+	.space {
+		display: inline-block;
+		width: 1ch;
+	}
+
+	.large {
+		width: 34px;
+	}
+
+	.xl {
+		width: 56px;
+	}
+	.row1 {
+		position: relative;
+		left: 12px;
+	}
+`
+
+const Key = styled.div`
+	display: inline-block;
+	border: 1px solid var(--fm-typography);
+	color: var(--fm-typography);
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	padding-top: 2px;
+	margin: 1px 2px;
+	border-radius: 50%;
+	font-size: 0.8rem;
 `
 
 const MenuButton = styled.div`
@@ -140,7 +204,7 @@ const MenuButton = styled.div`
 	}
 	.btn {
 		position: absolute;
-		top: 20.5px;
+		top: 23px;
 		left: 12px;
 		width: 26px;
 		height: 26px;

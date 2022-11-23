@@ -6,12 +6,12 @@ const Header = () => {
 	return (
 		<StyledHeader>
 			<h1>
-				DX101
+				Patch Diver
 				<MdLightMode className="mode" />
 			</h1>
 			<Sponsor>
 				<HiHeart className="heart" />
-				Sponsor
+				Support
 			</Sponsor>
 			<div className="avatar"></div>
 		</StyledHeader>

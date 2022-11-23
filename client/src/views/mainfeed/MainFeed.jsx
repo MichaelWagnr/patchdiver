@@ -57,7 +57,7 @@ const Overlay = styled.div`
 	top: 0;
 	left: 0;
 	background: var(--primary-bg);
-	opacity: 0.9;
+	opacity: 0.955;
 	z-index: 5;
 `
 
