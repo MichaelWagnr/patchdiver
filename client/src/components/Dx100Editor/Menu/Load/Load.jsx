@@ -81,21 +81,21 @@ const LoadMenu = styled.div`
 	.warning {
 		font-size: 0.8rem;
 		margin-left: 5px;
-		color: var(--fm-typography);
+		color: var(--secondary-fg-light);
 	}
 
 	button {
-		border: 1px solid var(--fm-typography);
+		border: 1px solid var(--secondary-fg-light);
 		border-radius: 5px;
 		padding: 5px 15px;
 		background: inherit;
-		color: var(--fm-typography);
+		color: var(--secondary-fg-light);
 		transition: transform 0.5s;
 
 		:hover {
 			transform: scale(1.1);
 			color: var(--primary-bg-dark);
-			background: var(--fm-typography);
+			background: var(--secondary-fg-light);
 		}
 	}
 `

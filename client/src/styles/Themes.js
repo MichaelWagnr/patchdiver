@@ -10,6 +10,15 @@ const Themes = createGlobalStyle`
     --primary-fg-light: #fff;
     --primary-fg-dark: #777;
 
+    --secondary-fg: #6E70A3;
+    --secondary-fg-light: #898ABE;
+    /* --secondary-fg-light: #A2A3D7; */
+    /* --secondary-fg-light: #BCBDF1; */
+    /* --secondary-fg-light: #D5D6FF; */
+    /* --secondary-fg-dark: #56578B; */
+    --secondary-fg-dark: #3C3D71;
+    /* --secondary-fg-dark: #232458; */
+    /* --secondary-fg-dark: #090A3E; */
     --vertical-border: 2px dotted var(--primary-fg);
     
   }

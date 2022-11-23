@@ -145,7 +145,7 @@ const MidiIsConnected = styled.div`
 
 const MidiPortInfo = styled.div`
 	height: 100%;
-	color: var(--fm-typography);
+	color: var(--fm-status-fg);
 
 	span {
 		font-weight: bold;
@@ -182,8 +182,8 @@ const MidiKeys = styled.div`
 
 const Key = styled.div`
 	display: inline-block;
-	border: 1px solid var(--fm-typography);
-	color: var(--fm-typography);
+	border: 1px solid var(--fm-status-fg);
+	color: var(--fm-status-fg);
 	height: 20px;
 	width: 20px;
 	text-align: center;
