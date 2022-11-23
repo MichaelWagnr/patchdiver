@@ -12,7 +12,6 @@ const Load = () => {
 	const [queuedPatch, setQueuedPatch] = useState(null)
 
 	if (midi) {
-		console.log(midi)
 		midi.input.onmidimessage = (e) => {
 			if (e.data.length === 101) setQueuedPatch(e.data)
 		}

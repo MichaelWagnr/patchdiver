@@ -3,9 +3,16 @@ import styled from 'styled-components'
 import { MidiContext } from '../../contexts/MidiContext'
 import { SiMidi } from 'react-icons/si'
 import { MdPiano } from 'react-icons/md'
+import { PatchContext } from '../../contexts/PatchContext'
+import { compileVoice } from './Dx100.parseVoice'
 
 const StatusBar = ({ isActive, setIsActive }) => {
 	const { midi, requestMidi } = useContext(MidiContext)
+	const { patch } = useContext(PatchContext)
+
+	const handleSendPatch = () => {
+		midi.send(compileVoice(patch))
+	}
 
 	return (
 		<Container>
@@ -41,7 +48,11 @@ const StatusBar = ({ isActive, setIsActive }) => {
 								<span>{midi.output.state} </span>
 							</p>
 						</MidiPortInfo>
-						{midi && <button className="send-voice">Send Voice</button>}
+						{midi && (
+							<button className="send-voice" onClick={() => handleSendPatch()}>
+								Send Patch
+							</button>
+						)}
 						{midi && (
 							<MidiKeys>
 								<div className="row1">
@@ -185,8 +196,6 @@ const Key = styled.div`
 const MenuButton = styled.div`
 	#menu {
 		opacity: 0;
-		/* width: 22px;
-		height: 52px; */
 	}
 	#menu:checked + .btn > span {
 		transform: rotate(45deg);

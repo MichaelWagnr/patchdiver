@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import { TbTag } from 'react-icons/tb'
-import { GiStarFormation } from 'react-icons/gi'
-import { RiStarSmileLine, RiCloseCircleLine } from 'react-icons/ri'
 import { BiLike } from 'react-icons/bi'
-import { TbFileLike } from 'react-icons/tb'
-import { RiCloseFill } from 'react-icons/ri'
+import { parseVoice } from '../../components/Dx100Editor/Dx100.parseVoice'
+import { useContext } from 'react'
+import { PatchContext } from '../../contexts/PatchContext'
 
 const Patch = ({
 	setEditorActive,
@@ -25,9 +24,10 @@ const Patch = ({
 	likes,
 	patchData,
 }) => {
-	const handleLaunch = (e) => {
-		const parent = e.target.parentElement
-		e.target.parentElement.classList.add('active')
+	const { setVoice, setPatch } = useContext(PatchContext)
+	const handleVoiceLoad = () => {
+		setVoice(parseVoice(patchData))
+		setPatch(parseVoice(patchData))
 	}
 
 	return (
@@ -37,10 +37,9 @@ const Patch = ({
 				onClick={(e) => {
 					e.stopPropagation()
 					setEditorActive(false)
-					console.dir(e.target.parentElement)
 					e.target.parentElement.classList.remove('active')
 				}}>
-				{/* <RiCloseFill className="close-icon" /> */}×
+				×
 			</button>
 
 			{userAvatar ? (
@@ -52,6 +51,7 @@ const Patch = ({
 			<button
 				className="launch"
 				onClick={(e) => {
+					handleVoiceLoad()
 					setEditorActive(true)
 					e.target.parentElement.classList.add('active')
 				}}>
