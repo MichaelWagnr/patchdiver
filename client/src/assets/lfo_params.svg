@@ -1,0 +1,77 @@
+<svg width="282" height="611" viewBox="0 0 282 611" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="lfo_params">
+<rect id="overlay" width="282" height="611" fill="#FB0000" fill-opacity="0.4"/>
+<g id="ams">
+<rect id="Rectangle 35" x="190" y="364" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36" x="190" y="383" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="porta">
+<rect id="Rectangle 35_2" x="190" y="472" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_2" x="190" y="491" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="pfw">
+<rect id="Rectangle 35_3" x="190" y="553" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_3" x="190" y="572" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="amod">
+<rect id="Rectangle 35_4" x="230" y="364" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_4" x="230" y="383" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="mono">
+<rect id="Rectangle 35_5" x="230" y="472" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_5" x="230" y="491" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="sfw">
+<rect id="Rectangle 35_6" x="230" y="553" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_6" x="230" y="572" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="amd">
+<rect id="Rectangle 35_7" x="150" y="364" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_7" x="150" y="383" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="portatime">
+<rect id="Rectangle 35_8" x="150" y="553" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_8" x="150" y="572" width="22" height="4" fill="#FA9770"/>
+</g>
+<g id="pmod">
+<rect id="Rectangle 35_9" x="110" y="364" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_9" x="110" y="383" width="22" height="4" fill="#13B5B8"/>
+</g>
+<g id="midc">
+<rect id="Rectangle 35_10" x="110" y="553" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_10" x="110" y="572" width="22" height="4" fill="#13B5B8"/>
+</g>
+<g id="ps">
+<rect id="Rectangle 35_11" x="70" y="364" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_11" x="70" y="383" width="22" height="4" fill="#13B5B8"/>
+</g>
+<g id="fbl">
+<rect id="Rectangle 35_12" x="70" y="553" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_12" x="70" y="572" width="22" height="4" fill="#13B5B8"/>
+</g>
+<g id="pmd">
+<rect id="Rectangle 35_13" x="30" y="364" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_13" x="30" y="383" width="22" height="4" fill="#13B5B8"/>
+</g>
+<g id="algo">
+<rect id="Rectangle 35_14" x="30" y="553" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_14" x="30" y="572" width="22" height="4" fill="#13B5B8"/>
+</g>
+<g id="sync">
+<rect id="Rectangle 35_15" x="230" y="113" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_15" x="230" y="132" width="22" height="4" fill="#C2B9A8"/>
+</g>
+<g id="delay">
+<rect id="Rectangle 35_16" x="190" y="174" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_16" x="190" y="193" width="22" height="4" fill="#C2B9A8"/>
+</g>
+<g id="rate">
+<rect id="Rectangle 35_17" x="150" y="174" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_17" x="150" y="193" width="22" height="4" fill="#C2B9A8"/>
+</g>
+<g id="wave">
+<rect id="Rectangle 35_18" x="30" y="174" width="22" height="42" fill="black"/>
+<rect id="Rectangle 36_18" x="30" y="193" width="22" height="4" fill="#C2B9A8"/>
+</g>
+</g>
+</svg>
