@@ -1,17 +1,18 @@
 import styled from 'styled-components'
 import { TbTag } from 'react-icons/tb'
-import { useState } from 'react'
 
-const Tag = ({ name, type }) => {
-	const [isChecked, setIsChecked] = useState(false)
-
+const Tag = ({ name, type, handleInputChange, isSelected }) => {
 	return (
 		<StyledTag
-			onClick={() => setIsChecked(true)}
-			className={isChecked ? 'checked' : null}>
-			<TbTag className="icon" />
-			<input type="radio" id={name} name={type} value={name} />
-			<label htmlFor={name}>{name}</label>
+			data-type={type}
+			data-value={name}
+			onClick={(e) => handleInputChange(e)}
+			className={isSelected ? 'checked' : null}>
+			<TbTag className="icon" data-type={type} data-value={name} />
+			{/* <input type="radio" id={name} name={type} value={name} /> */}
+			<label htmlFor={name} data-type={type} data-value={name}>
+				{name}
+			</label>
 		</StyledTag>
 	)
 }

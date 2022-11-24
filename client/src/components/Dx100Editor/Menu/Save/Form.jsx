@@ -1,25 +1,81 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styled from 'styled-components'
 import Tag from './Tag'
 import { genreTags, patchTags } from './Form.tags'
+import { PatchContext } from '../../../../contexts/PatchContext'
 
 const Form = () => {
+	const { voice } = useContext(PatchContext)
 	const [albumImage, setAlbumImage] = useState(null)
+	const [formData, setFormData] = useState({
+		created: '',
+		userName: 'Jane Doe',
+		userAvatar: '',
+		manufacturer: 'Yamaha',
+		model: 'DX100',
+		patchName: '',
+		description: '',
+		patchTag: '',
+		genreTag: '',
+		inspiredArtist: '',
+		inspiredTrack: '',
+		albumAvatar: '',
+		likes: 0,
+		patchData: voice,
+	})
+
+	const handleInputChange = (e) => {
+		const i = e.target
+		const { type, value } = e.target.dataset
+		if (type && value) {
+			return setFormData({ ...formData, [type]: value })
+		} else {
+			return setFormData({ ...formData, [i.id]: i.value })
+		}
+	}
+
+	const getAlbumArt = async (track, artist) => {
+		console.log(track, artist)
+		// fetch(`/album-art/`)
+		// album-art?track=sunshine recorder&artist=boards of canada
+		fetch(`/api/album-art?track=${track}&artist=${artist}`)
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+	}
+
+	const handleBlur = () => {
+		if (formData.inspiredTrack.length > 0 && formData.inspiredArtist.length > 0)
+			getAlbumArt(formData.inspiredTrack, formData.inspiredArtist)
+	}
 
 	return (
 		<StyledForm>
 			<label htmlFor="patchName">Patch Name</label>
-			<input type="text" id="patchName" name="patchName" />
+			<input
+				type="text"
+				id="patchName"
+				name="patchName"
+				value={formData.patchName}
+				onChange={(e) => handleInputChange(e)}
+			/>
 			<div className="info">
 				DX101 Editor is cross-compatible with most 4-OP FM sythesizers but does
 				not yet include parameters not found on the DX100 (ie. TX81Z waveforms).
 			</div>
 			<label htmlFor="manufacturer">Manufacturer</label>
-			<select id="manufacturer" name="manufacturer">
+			<select
+				id="manufacturer"
+				name="manufacturer"
+				value={formData.manufacturer}
+				onChange={(e) => handleInputChange(e)}>
 				<option value="Yamaha">Yamaha</option>
 			</select>
 			<label htmlFor="model">Model</label>
-			<select id="model" name="model">
+			<select
+				id="model"
+				name="model"
+				value={formData.model}
+				onChange={(e) => handleInputChange(e)}>
 				<option value="DX100">DX100</option>
 				<option value="DX21">DX21</option>
 				<option value="DX27">DX27</option>
@@ -27,9 +83,23 @@ const Form = () => {
 			</select>
 			<div className="info">Inspired by</div>
 			<label htmlFor="inspiredTrack">Track Name</label>
-			<input type="text" id="inspiredTrack" name="inspiredTrack" />
+			<input
+				type="text"
+				id="inspiredTrack"
+				name="inspiredTrack"
+				value={formData.inspiredTrack}
+				onChange={(e) => handleInputChange(e)}
+				onBlur={() => handleBlur()}
+			/>
 			<label htmlFor="inspiredArtist">Artist Name</label>
-			<input type="text" id="inspiredArtist" name="inspiredArtist" />
+			<input
+				type="text"
+				id="inspiredArtist"
+				name="inspiredArtist"
+				value={formData.inspiredArtist}
+				onChange={(e) => handleInputChange(e)}
+				onBlur={() => handleBlur()}
+			/>
 			{albumImage ? (
 				<img className="albumAvatar" />
 			) : (
@@ -46,7 +116,13 @@ const Form = () => {
 					</label>
 					<div className="tag-container">
 						{genreTags.map((tag) => (
-							<Tag name={tag} key={tag} type="genre" />
+							<Tag
+								name={tag}
+								key={tag}
+								type="genreTag"
+								handleInputChange={handleInputChange}
+								isSelected={formData.genreTag === tag ? true : null}
+							/>
 						))}
 					</div>
 				</div>
@@ -57,7 +133,13 @@ const Form = () => {
 					</label>
 					<div className="tag-container">
 						{patchTags.map((tag) => (
-							<Tag name={tag} key={tag} type="patch" />
+							<Tag
+								name={tag}
+								key={tag}
+								type="patchTag"
+								handleInputChange={handleInputChange}
+								isSelected={formData.patchTag === tag ? true : null}
+							/>
 						))}
 					</div>
 				</div>
@@ -93,6 +175,7 @@ const StyledForm = styled.form`
 		height: calc(2 * 28px);
 		grid-column: 2 / span 2;
 		resize: none;
+		font-family: inherit;
 	}
 
 	.info {
