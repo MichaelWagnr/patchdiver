@@ -96,15 +96,10 @@ const Patch = ({
 			<div className="description">
 				{description} <br /> <span className="created">created: {created}</span>
 			</div>
-
-			{/* <GiStarFormation className="star" />
-			<RiCloseCircleLine className="star" />
-			<RiStarSmileLine className="star" /> */}
 			<div className="like">
 				<div className="likes">{likes}</div>
 				<BiLike className="icon" />
 			</div>
-			{/* <TbFileLike className="star" /> */}
 		</PatchCard>
 	)
 }

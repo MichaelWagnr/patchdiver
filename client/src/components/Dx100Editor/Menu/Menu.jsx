@@ -33,7 +33,7 @@ const Overlay = styled.div`
 	position: absolute;
 	background: var(--primary-bg-dark);
 	backdrop-filter: blur(100px);
-	opacity: 0.92;
+	opacity: 0.85;
 
 	& > * {
 		opacity: initial;
@@ -47,7 +47,7 @@ const Overlay = styled.div`
 `
 
 const Navigation = styled(Overlay)`
-	height: 655px;
+	height: 657px;
 	width: 262px;
 
 	/* bottom-left */
@@ -55,7 +55,7 @@ const Navigation = styled(Overlay)`
 	left: -262px; */
 
 	/* left-to-right */
-	top: 2px;
+	top: 0px;
 	left: -262px;
 
 	z-index: 9;
@@ -67,8 +67,8 @@ const Navigation = styled(Overlay)`
 	/* justify-content: center; */
 
 	&.active {
+		top: 0px;
 		left: 2px;
-		top: 2px;
 	}
 `
 
@@ -78,7 +78,7 @@ const MenuSection = styled(Overlay)`
 	left: 1336px; */
 
 	/* bottom-right */
-	top: 660px;
+	top: 662px;
 	left: 1336px;
 
 	/* top-left */
@@ -105,13 +105,13 @@ const MenuSection = styled(Overlay)`
 	/* top: 2px;
 	left: 1354px; */
 
-	height: 655px;
+	height: 657px;
 	width: 1068px;
 	z-index: 8;
 
 	&.active {
+		top: 0px;
 		left: 264px;
-		top: 2px;
 	}
 `
 

@@ -1,5 +1,6 @@
 import MenuView from '../Menu.style'
 import styled from 'styled-components'
+import Form from './Form'
 
 const Save = () => {
 	return (
@@ -7,6 +8,7 @@ const Save = () => {
 			<SaveMenu>
 				<div className="save">
 					<h2>Save</h2>
+					<Form />
 				</div>
 				<div className="border-left"></div>
 				<div className="considerations">
@@ -22,11 +24,11 @@ const Save = () => {
 					</p>
 					<p>
 						Saving in this menu will save patches to a profile for future
-						reference
+						reference.
 					</p>
 					<p>
 						To save the sent patches natively on the user synthesizer refer to a
-						user manual
+						user manual.
 					</p>
 				</div>
 			</SaveMenu>
@@ -37,11 +39,12 @@ const Save = () => {
 const SaveMenu = styled.div`
 	/* width: 550px; */
 	display: grid;
-	grid-template-columns: 530px 2px 1fr;
+	grid-template-columns: 1fr 2px 1fr;
 	gap: 20px;
 
 	.border-left {
 		width: 1px;
+		/* height: 255px; */
 		height: 100%;
 		background: var(--secondary-fg-light);
 	}
