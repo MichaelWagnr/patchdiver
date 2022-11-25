@@ -39,15 +39,15 @@ const Form = () => {
 		setFetchStatus('fetching')
 		fetch(`/api/album-art?track=${track}&artist=${artist}`)
 			.then((res) => {
-				if (res.status === 404 || res.status === 400) {
+				if (res.status === 404 || res.status === 401) {
 					setFormData({ ...formData, albumAvatar: '' })
 					return setFetchStatus('404')
 				}
 				return res.json()
 			})
 			.then((data) => {
-				if (data.srcUrl !== undefined) {
-					setFormData({ ...formData, albumAvatar: data.srcUrl })
+				if (data.imgSrc !== undefined) {
+					setFormData({ ...formData, albumAvatar: data.imgSrc })
 					return setFetchStatus(null)
 				} else {
 					setFormData({ ...formData, albumAvatar: '' })
@@ -58,7 +58,7 @@ const Form = () => {
 	}
 
 	const handleBlur = () => {
-		if (formData.inspiredTrack.length > 0 && formData.inspiredArtist.length > 0)
+		if (formData.inspiredTrack.length > 0 || formData.inspiredArtist.length > 0)
 			getAlbumArt(formData.inspiredTrack, formData.inspiredArtist)
 	}
 

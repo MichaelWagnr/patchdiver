@@ -118,3 +118,15 @@ https://www.sitepoint.com/google-auth-react-express/
 
 google identity ?
 https://cloud.google.com/identity-platform/docs
+
+===================================================================================================
+
+SPOTIFY:
+
+https://stackoverflow.com/questions/60659902/how-to-get-oauth-token-from-spotify
+
+docs:
+https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
+
+get new 1 hour token:
+https://developer.spotify.com/console/post-playlists/

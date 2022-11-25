@@ -1,3 +1,4 @@
-const { getAlbumArt } = require('./getAlbumArt')
+const { getAlbumArtMB } = require('./getAlbumArtMB')
+const { getArtSP } = require('./getArtSP')
 
-module.exports = { getAlbumArt }
+module.exports = { getAlbumArtMB, getArtSP }

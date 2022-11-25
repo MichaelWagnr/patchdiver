@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 // const util = require('util')
 
-const getAlbumArt = async (req, res) => {
+const getAlbumArtMB = async (req, res) => {
 	const { track, artist } = req.query
 
 	try {
@@ -87,4 +87,4 @@ const getAlbumArt = async (req, res) => {
 	})
 }
 
-module.exports = { getAlbumArt }
+module.exports = { getAlbumArtMB }
