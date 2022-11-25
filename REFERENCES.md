@@ -104,3 +104,17 @@ Turning images into base64:
 answer uses gravatar example!
 https://stackoverflow.com/questions/6150289/how-can-i-convert-an-image-into-base64-string-using-javascript
 https://pqina.nl/blog/convert-an-image-to-a-base64-string-with-javascript/
+
+===================================================================================================
+
+AUTHENTICATION:
+
+with google:
+https://blog.logrocket.com/guide-adding-google-login-react-app/
+https://dev.to/sivaneshs/add-google-login-to-your-react-apps-in-10-mins-4del
+https://www.npmjs.com/package/react-google-login
+https://blog.prototypr.io/how-to-build-google-login-into-a-react-app-and-node-express-api-821d049ee670
+https://www.sitepoint.com/google-auth-react-express/
+
+google identity ?
+https://cloud.google.com/identity-platform/docs

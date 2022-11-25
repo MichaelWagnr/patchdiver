@@ -119,7 +119,7 @@ const PatchCard = styled.div`
 
 	border: 1px solid var(--primary-fg);
 	border-radius: 5px;
-	margin: 15px auto;
+	margin: 20px auto;
 	position: relative;
 	top: 0px;
 
@@ -301,13 +301,15 @@ const PatchCard = styled.div`
 		grid-template-columns: 40px 60px 140px 100px 1fr 40px;
 		grid-template-rows: 50px;
 
-		align-content: center;
+		/* align-content: center; */
+		--center: 11.5px;
 
 		.launch,
 		.album,
 		.inspiration,
 		.border-left,
-		.description {
+		.description,
+		.inspired-by-label {
 			display: none;
 		}
 
@@ -332,12 +334,9 @@ const PatchCard = styled.div`
 			}
 		}
 
-		.avatar {
-		}
-
 		.patch {
 			position: relative;
-			bottom: 2px;
+			bottom: calc(2px + var(--center));
 
 			.patch-name {
 			}
@@ -348,6 +347,8 @@ const PatchCard = styled.div`
 		.instrument {
 			grid-row: 1;
 			grid-column: 4;
+			position: relative;
+			bottom: var(--center);
 		}
 
 		.tags {
@@ -370,6 +371,15 @@ const PatchCard = styled.div`
 				left: 1px;
 				bottom: 0px;
 			}
+		}
+
+		.close,
+		.instrument,
+		.tags,
+		.like,
+		.avatar {
+			position: relative;
+			bottom: var(--center);
 		}
 	}
 `

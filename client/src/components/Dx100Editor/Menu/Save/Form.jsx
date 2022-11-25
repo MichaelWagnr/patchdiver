@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import Tag from './Tag'
 import { genreTags, patchTags } from './Form.tags'
 import { PatchContext } from '../../../../contexts/PatchContext'
+import EllipsisSpinner from '../../../EllipsisSpinner'
 
 const Form = () => {
 	const { voice } = useContext(PatchContext)
-	const [albumImage, setAlbumImage] = useState(null)
+	const [fetchStatus, setFetchStatus] = useState(null)
 	const [formData, setFormData] = useState({
 		created: '',
 		userName: 'Jane Doe',
@@ -35,12 +36,25 @@ const Form = () => {
 	}
 
 	const getAlbumArt = async (track, artist) => {
-		console.log(track, artist)
-		// fetch(`/album-art/`)
-		// album-art?track=sunshine recorder&artist=boards of canada
+		setFetchStatus('fetching')
 		fetch(`/api/album-art?track=${track}&artist=${artist}`)
-			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((res) => {
+				if (res.status === 404 || res.status === 400) {
+					setFormData({ ...formData, albumAvatar: '' })
+					return setFetchStatus('404')
+				}
+				return res.json()
+			})
+			.then((data) => {
+				if (data.srcUrl !== undefined) {
+					setFormData({ ...formData, albumAvatar: data.srcUrl })
+					return setFetchStatus(null)
+				} else {
+					setFormData({ ...formData, albumAvatar: '' })
+					return setFetchStatus('404')
+				}
+			})
+			.catch()
 	}
 
 	const handleBlur = () => {
@@ -53,6 +67,8 @@ const Form = () => {
 			<label htmlFor="patchName">Patch Name</label>
 			<input
 				type="text"
+				required
+				autoComplete="off"
 				id="patchName"
 				name="patchName"
 				value={formData.patchName}
@@ -64,6 +80,7 @@ const Form = () => {
 			</div>
 			<label htmlFor="manufacturer">Manufacturer</label>
 			<select
+				required
 				id="manufacturer"
 				name="manufacturer"
 				value={formData.manufacturer}
@@ -72,6 +89,7 @@ const Form = () => {
 			</select>
 			<label htmlFor="model">Model</label>
 			<select
+				required
 				id="model"
 				name="model"
 				value={formData.model}
@@ -85,6 +103,7 @@ const Form = () => {
 			<label htmlFor="inspiredTrack">Track Name</label>
 			<input
 				type="text"
+				autoComplete="off"
 				id="inspiredTrack"
 				name="inspiredTrack"
 				value={formData.inspiredTrack}
@@ -94,20 +113,36 @@ const Form = () => {
 			<label htmlFor="inspiredArtist">Artist Name</label>
 			<input
 				type="text"
+				autoComplete="off"
 				id="inspiredArtist"
 				name="inspiredArtist"
 				value={formData.inspiredArtist}
 				onChange={(e) => handleInputChange(e)}
 				onBlur={() => handleBlur()}
 			/>
-			{albumImage ? (
-				<img className="albumAvatar" />
+			{formData.albumAvatar && !fetchStatus ? (
+				<img
+					className="albumAvatar"
+					src={formData.albumAvatar}
+					alt="Album Artwork"
+				/>
 			) : (
-				<div className="albumAvatar"></div>
+				<div className="albumAvatar">
+					{fetchStatus === 'fetching' ? (
+						<EllipsisSpinner />
+					) : fetchStatus === '404' ? (
+						'N/A'
+					) : (
+						''
+					)}
+				</div>
 			)}
 			<div className="info">Limit 250 characters</div>
 			<label htmlFor="description">Description</label>
-			<textarea name="description" id="description"></textarea>
+			<textarea
+				autoComplete="off"
+				name="description"
+				id="description"></textarea>
 
 			<Tags>
 				<div className="genre tags">
@@ -195,6 +230,9 @@ const StyledForm = styled.form`
 		grid-column: 3;
 		grid-row: 6 / span 2;
 		justify-self: center;
+
+		display: grid;
+		place-content: center;
 	}
 
 	button[type='submit'] {
