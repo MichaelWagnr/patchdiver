@@ -58,6 +58,9 @@ const Patch = ({
 				LAUNCH
 			</button>
 
+			{inspiredArtist || inspiredTrack ? (
+				<div className="inspired-by-label">Inspired by</div>
+			) : null}
 			{albumAvatar ? (
 				<img src={albumAvatar} alt="InspiredBy" className="album" />
 			) : (
@@ -116,7 +119,7 @@ const PatchCard = styled.div`
 
 	border: 1px solid var(--primary-fg);
 	border-radius: 5px;
-	margin: 20px auto;
+	margin: 15px auto;
 	position: relative;
 	top: 0px;
 
@@ -186,9 +189,20 @@ const PatchCard = styled.div`
 		grid-column: 3;
 	}
 
+	.inspired-by-label {
+		grid-row: 3;
+		grid-column: 3;
+		font-size: 0.8rem;
+		color: var(--secondary-fg-light);
+		position: relative;
+		bottom: 16px;
+	}
+
 	.inspiration {
 		grid-row: 3;
 		grid-column: 3;
+		position: relative;
+		top: 7px;
 	}
 
 	.tags {

@@ -39,7 +39,7 @@ const Save = () => {
 const SaveMenu = styled.div`
 	/* width: 550px; */
 	display: grid;
-	grid-template-columns: 1fr 2px 1fr;
+	grid-template-columns: 550px 2px 1fr;
 	gap: 20px;
 
 	.border-left {
