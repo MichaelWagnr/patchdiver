@@ -124,9 +124,21 @@ https://cloud.google.com/identity-platform/docs
 SPOTIFY:
 
 https://stackoverflow.com/questions/60659902/how-to-get-oauth-token-from-spotify
-
+https://benwiz.com/blog/create-spotify-refresh-token/
 docs:
 https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
-
 get new 1 hour token:
 https://developer.spotify.com/console/post-playlists/
+
+---
+
+BE to API requires a Client Credentials Flow
+
+app dashboard with client ID, and client secret
+https://developer.spotify.com/dashboard/applications/80ad3bc99ecf40d8b1b96d06f747b031/users
+
+client credentials flow
+https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/
+
+client credentials flow example
+https://github.com/spotify/web-api-auth-examples/blob/master/client_credentials/app.js

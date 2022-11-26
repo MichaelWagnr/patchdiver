@@ -58,8 +58,15 @@ const Form = () => {
 	}
 
 	const handleBlur = () => {
-		if (formData.inspiredTrack.length > 0 || formData.inspiredArtist.length > 0)
+		if (
+			formData.inspiredTrack.length > 0 ||
+			formData.inspiredArtist.length > 0
+		) {
 			getAlbumArt(formData.inspiredTrack, formData.inspiredArtist)
+		} else {
+			setFormData({ ...formData, albumAvatar: '' })
+			setFetchStatus(null)
+		}
 	}
 
 	return (
@@ -233,6 +240,8 @@ const StyledForm = styled.form`
 
 		display: grid;
 		place-content: center;
+
+		opacity: 1;
 	}
 
 	button[type='submit'] {
