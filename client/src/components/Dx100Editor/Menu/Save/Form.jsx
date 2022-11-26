@@ -39,7 +39,7 @@ const Form = () => {
 		setFetchStatus('fetching')
 		fetch(`/api/album-art?track=${track}&artist=${artist}`)
 			.then((res) => {
-				if (res.status === 404 || res.status === 401) {
+				if (res.status !== 200) {
 					setFormData({ ...formData, albumAvatar: '' })
 					return setFetchStatus('404')
 				}
