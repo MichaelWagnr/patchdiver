@@ -565,9 +565,9 @@ export const dx100Parameters = {
 		max: 127,
 	},
 	G: {
-		name: 'OPERATOR ENABLE/DISABLE',
+		name: 'CHECKSUM',
 		param: 93,
-		min: 32,
+		min: 0,
 		max: 127,
 	},
 }

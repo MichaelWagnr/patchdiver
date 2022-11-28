@@ -58,6 +58,10 @@ MIDI standard:
 https://learn.sparkfun.com/tutorials/midi-tutorial/all
 https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html essentials of midi protocol
 
+Checksums:
+
+http://www.muzines.co.uk/articles/everything-you-ever-wanted-to-know-about-system-exclusive/5722
+
 ===================================================================================================
 
 MISC:
