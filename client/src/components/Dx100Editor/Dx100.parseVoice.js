@@ -22,7 +22,7 @@ export const parseVoice = (sysexArr) => {
 }
 
 export const compileVoice = (voiceObj) => {
-	const sysexArr = [240, 67, 2, 3, 0, 93]
+	const sysexArr = [240, 67, 0, 3, 0, 93]
 	const objArr = Object.values(voiceObj)
 	const sorted = objArr.sort((a, b) => a.param - b.param)
 	const valueArr = sorted.map((obj) => obj.value)

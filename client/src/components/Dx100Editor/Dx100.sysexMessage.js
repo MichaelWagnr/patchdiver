@@ -12,7 +12,7 @@ const sysexMessage = (key, val) => {
 	// const key = dx100Parameters[paramName].param
 
 	// Sysex strings contain a bytes that signify the start of a sysex message (Status); ID no.; Substatus / ch. no.; Parameter group no.; Switch no. (key); Data (val); end of sysex message signifer (EOX)
-	const sysex = [240, 67, 18, 18, key, val, 247]
+	const sysex = [240, 67, 16, 18, key, val, 247]
 
 	return sysex
 }

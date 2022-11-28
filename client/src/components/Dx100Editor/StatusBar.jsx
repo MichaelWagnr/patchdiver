@@ -5,8 +5,9 @@ import { SiMidi } from 'react-icons/si'
 import { MdPiano } from 'react-icons/md'
 import { PatchContext } from '../../contexts/PatchContext'
 import { compileVoice } from './Dx100.parseVoice'
+import MidiKeys from './MidiKeys'
 
-const StatusBar = ({ isActive, setIsActive }) => {
+const StatusBar = ({ editorIsActive, menuIsActive, setMenuIsActive }) => {
 	const { midi, requestMidi } = useContext(MidiContext)
 	const { patch } = useContext(PatchContext)
 
@@ -20,7 +21,7 @@ const StatusBar = ({ isActive, setIsActive }) => {
 				<input
 					id="menu"
 					type="checkbox"
-					onClick={() => setIsActive(!isActive)}
+					onClick={() => setMenuIsActive(!menuIsActive)}
 				/>
 				<label className="btn" htmlFor="menu">
 					<span></span>
@@ -54,32 +55,10 @@ const StatusBar = ({ isActive, setIsActive }) => {
 							</button>
 						)}
 						{midi && (
-							<MidiKeys>
-								<div className="row1">
-									<Key>w</Key>
-									<Key>e</Key>
-									<div className="large space"></div>
-									<Key>t</Key>
-									<Key>y</Key>
-									<Key>u</Key>
-									<div className="xl space"></div>
-									<Key>+</Key>
-								</div>
-								<div className="row2">
-									<Key>a</Key>
-									<Key>s</Key>
-									<Key>d</Key>
-									<div className="space"></div>
-									<Key>f</Key>
-									<Key>g</Key>
-									<Key>h</Key>
-									<Key>j</Key>
-									<div className="space"></div>
-									<Key>k</Key>
-									<div className="space"></div>
-									<Key>-</Key>
-								</div>
-							</MidiKeys>
+							<MidiKeys
+								editorIsActive={editorIsActive}
+								menuIsActive={menuIsActive}
+							/>
 						)}
 					</MidiIsConnected>
 				)}
@@ -155,42 +134,6 @@ const MidiPortInfo = styled.div`
 			display: inline-block;
 		}
 	}
-`
-
-const MidiKeys = styled.div`
-	display: grid;
-	grid-template-rows: 1fr 1fr;
-	padding: 1px 0px 10px 33px;
-
-	.space {
-		display: inline-block;
-		width: 1ch;
-	}
-
-	.large {
-		width: 34px;
-	}
-
-	.xl {
-		width: 56px;
-	}
-	.row1 {
-		position: relative;
-		left: 12px;
-	}
-`
-
-const Key = styled.div`
-	display: inline-block;
-	border: 1px solid var(--fm-status-fg);
-	color: var(--fm-status-fg);
-	height: 20px;
-	width: 20px;
-	text-align: center;
-	padding-top: 2px;
-	margin: 1px 2px;
-	border-radius: 50%;
-	font-size: 0.8rem;
 `
 
 const MenuButton = styled.div`

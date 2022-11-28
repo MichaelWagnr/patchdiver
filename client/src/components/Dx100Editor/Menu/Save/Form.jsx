@@ -37,7 +37,7 @@ const Form = () => {
 
 	const getAlbumArt = async (track, artist) => {
 		setFetchStatus('fetching')
-		fetch(`/api/album-art?track=${track}&artist=${artist}`)
+		fetch(`/api/artwork?track=${track}&artist=${artist}`)
 			.then((res) => {
 				if (res.status !== 200) {
 					setFormData({ ...formData, albumAvatar: '' })

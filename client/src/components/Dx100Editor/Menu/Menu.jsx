@@ -6,17 +6,17 @@ import Theme from './Theme/Theme'
 import About from './About/About'
 import Load from './Load/Load'
 
-const Menu = ({ isActive, setTheme }) => {
+const Menu = ({ menuIsActive, setTheme }) => {
 	return (
 		<>
-			<Navigation className={isActive ? 'active' : null}>
+			<Navigation className={menuIsActive ? 'active' : null}>
 				<Option to="menu/main">Main</Option>
 				<Option to="menu/Load">Load</Option>
 				<Option to="menu/save">Save</Option>
 				<Option to="menu/theme">Theme</Option>
 				<Option to="menu/about">About</Option>
 			</Navigation>
-			<MenuSection className={isActive ? 'active' : null}>
+			<MenuSection className={menuIsActive ? 'active' : null}>
 				<Routes>
 					<Route path="menu/main" element={<Main />} />
 					<Route path="menu/load" element={<Load />} />

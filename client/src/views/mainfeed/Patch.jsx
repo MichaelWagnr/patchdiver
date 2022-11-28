@@ -6,8 +6,8 @@ import { useContext } from 'react'
 import { PatchContext } from '../../contexts/PatchContext'
 
 const Patch = ({
-	setEditorActive,
-	editorActive,
+	setEditorIsActive,
+	editorIsActive,
 	_id,
 	created,
 	userName,
@@ -36,7 +36,7 @@ const Patch = ({
 				className="close"
 				onClick={(e) => {
 					e.stopPropagation()
-					setEditorActive(false)
+					setEditorIsActive(false)
 					e.target.parentElement.classList.remove('active')
 				}}>
 				×
@@ -52,7 +52,7 @@ const Patch = ({
 				className="launch"
 				onClick={(e) => {
 					handleVoiceLoad()
-					setEditorActive(true)
+					setEditorIsActive(true)
 					e.target.parentElement.classList.add('active')
 				}}>
 				LAUNCH

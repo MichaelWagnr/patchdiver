@@ -9,9 +9,9 @@ import Menu from './Menu/Menu'
 import OpSection from './OpSection/OpSection'
 import StatusBar from './StatusBar'
 
-const Editor = () => {
+const Editor = ({ editorIsActive }) => {
 	const { setVoice, setPatch } = useContext(PatchContext)
-	const [isActive, setIsActive] = useState(false)
+	const [menuIsActive, setMenuIsActive] = useState(false)
 	const [theme, setTheme] = useState('default')
 
 	const patch = null // ... for now
@@ -26,14 +26,18 @@ const Editor = () => {
 
 	return (
 		<Container className={theme}>
-			<Menu isActive={isActive} setTheme={setTheme} />
+			<Menu menuIsActive={menuIsActive} setTheme={setTheme} />
 			{operators.map((operator) => {
 				return <OpSection key={'op' + operator} number={operator} />
 			})}
 
 			<LfoSection />
 			<DisplaySection />
-			<StatusBar setIsActive={setIsActive} isActive={isActive} />
+			<StatusBar
+				setMenuIsActive={setMenuIsActive}
+				menuIsActive={menuIsActive}
+				editorIsActive={editorIsActive}
+			/>
 		</Container>
 	)
 }

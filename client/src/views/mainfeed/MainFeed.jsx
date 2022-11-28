@@ -6,13 +6,13 @@ import Patch from './Patch'
 import patchMockData from './Patch.placeHolders'
 
 const MainFeed = () => {
-	const [editorActive, setEditorActive] = useState(false)
+	const [editorIsActive, setEditorIsActive] = useState(false)
 
 	return (
 		<Page>
-			{editorActive && (
+			{editorIsActive && (
 				<Overlay
-				// onClick={() => setEditorActive(false)}
+				// onClick={() => setEditorIsActive(false)}
 				//TODO it would be nice if clicking the overlay also disactivated the active patch class
 				></Overlay>
 			)}
@@ -20,8 +20,8 @@ const MainFeed = () => {
 				<Spacer height="55px" width="400px" />
 				{patchMockData.map((patch) => (
 					<Patch
-						setEditorActive={setEditorActive}
-						editorActive={editorActive}
+						setEditorIsActive={setEditorIsActive}
+						editorIsActive={editorIsActive}
 						key={patch._id}
 						_id={patch._id}
 						created={patch.created}
@@ -41,8 +41,8 @@ const MainFeed = () => {
 					/>
 				))}
 			</Feed>
-			<EditorContainer className={editorActive ? 'active' : null}>
-				<Editor />
+			<EditorContainer className={editorIsActive ? 'active' : null}>
+				<Editor editorIsActive={editorIsActive} />
 			</EditorContainer>
 		</Page>
 	)
