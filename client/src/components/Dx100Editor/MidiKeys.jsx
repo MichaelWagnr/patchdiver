@@ -30,9 +30,7 @@ const MidiKeys = ({ editorIsActive, menuIsActive }) => {
 			!e.repeat &&
 			validKeys.includes(e.key)
 		) {
-			console.log([144, notes[e.key], 64])
 			midi.send([144, notes[e.key], 64])
-			// midi.send([144, notes[e.key], 64])
 		}
 	}
 
@@ -43,9 +41,7 @@ const MidiKeys = ({ editorIsActive, menuIsActive }) => {
 			!e.repeat &&
 			validKeys.includes(e.key)
 		) {
-			console.log([144, notes[e.key], 0])
 			midi.send([144, notes[e.key], 0])
-			// midi.send([144, note, 0])
 		}
 	}
 
