@@ -6,17 +6,21 @@
 	"author": "Michael Wagner",
 	"license": "MIT",
 	"scripts": {
-		"start": "nodemon server.js"
+		"start": "nodemon -r dotenv/config server.js"
 	},
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"blueimp-md5": "^2.19.0",
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
 		"helmet": "^6.0.0",
+		"jsonwebtoken": "^8.5.1",
 		"mongodb": "^4.12.0",
 		"morgan": "^1.10.0",
 		"node-fetch": "2.6.7",
 		"nodemon": "^2.0.20",
 		"qs": "^6.11.0",
-		"request": "^2.88.2"
+		"request": "^2.88.2",
+		"uuid": "^9.0.0"
 	}
 }

@@ -1,10 +1,9 @@
-const { ObjectId } = require('mongodb')
 const { accessDB } = require('../utils/accessDB')
 
 const getUserById = async (req, res) => {
 	const { id } = req.params
 	const user = await accessDB((db) =>
-		db.collection('users').findOne({ _id: ObjectId(id) })
+		db.collection('users').findOne({ _id: id })
 	)
 
 	if (user) {

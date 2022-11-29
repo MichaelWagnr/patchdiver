@@ -1,10 +1,9 @@
-const { ObjectId } = require('mongodb')
 const { accessDB } = require('../utils/accessDB')
 
 const deleteUserById = async (req, res) => {
 	const { id } = req.params
 	const deleteUser = await accessDB((db) =>
-		db.collection('users').deleteOne({ _id: ObjectId(id) })
+		db.collection('users').deleteOne({ _id: id })
 	)
 
 	if (deleteUser) {
