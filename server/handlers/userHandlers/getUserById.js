@@ -1,4 +1,4 @@
-const { accessDB } = require('../utils/accessDB')
+const { accessDB } = require('../../utils/accessDB')
 
 const getUserById = async (req, res) => {
 	const { id } = req.params

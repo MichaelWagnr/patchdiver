@@ -1,3 +1,5 @@
+const { accessDB } = require('../../utils/accessDB')
+
 const getPatchById = async (req, res) => {
 	const { id } = req.params
 	const patch = await accessDB((db) =>

@@ -1,3 +1,5 @@
+const { accessDB } = require('../../utils/accessDB')
+
 const getAllPatches = async (req, res) => {
 	const patches = await accessDB((db) =>
 		db.collection('patches').find().toArray()

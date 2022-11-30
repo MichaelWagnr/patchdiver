@@ -1,4 +1,4 @@
-const { accessDB } = require('../utils/accessDB')
+const { accessDB } = require('../../utils/accessDB')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 

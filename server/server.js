@@ -22,11 +22,11 @@ express()
 	.use(express.json())
 	.use(morgan('tiny'))
 	.use(helmet())
-	.use((req, res, next) => {
-		req.requestTime = new Date().toISOString()
-		console.log(req.headers)
-		next()
-	})
+	// .use((req, res, next) => {
+	// 	req.requestTime = new Date().toISOString()
+	// 	console.log(req.headers)
+	// 	next()
+	// })
 
 	// Artwork endpoint
 	.get('/api/artwork', getArtSP)

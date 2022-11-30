@@ -1,4 +1,4 @@
-const { accessDB } = require('../utils/accessDB')
+const { accessDB } = require('../../utils/accessDB')
 
 const getAllUsers = async (req, res) => {
 	const allUsers = await accessDB((db) =>

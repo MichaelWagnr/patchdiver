@@ -1,3 +1,5 @@
+const { accessDB } = require('../../utils/accessDB')
+
 const deletePatchById = async (req, res) => {
 	const { id } = req.params
 	const deletePatch = await accessDB((db) =>
