@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { HiHeart } from 'react-icons/hi'
 import { MdLightMode, MdNightlight } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 	return (
@@ -9,11 +10,14 @@ const Header = () => {
 				Patch Diver
 				<MdLightMode className="mode" />
 			</h1>
-			<Sponsor>
+			{/* <Sponsor>
 				<HiHeart className="heart" />
 				Support
-			</Sponsor>
-			<div className="avatar"></div>
+			</Sponsor> */}
+			<Link className="log-in" to="/login">
+				Log In
+			</Link>
+			{/* <div className="avatar"></div> */}
 		</StyledHeader>
 	)
 }
@@ -41,6 +45,20 @@ const StyledHeader = styled.header`
 	.mode {
 		font-size: 1.1rem;
 		margin: 0px 20px;
+	}
+
+	.log-in {
+		font-size: 0.8rem;
+		color: inherit;
+		text-decoration: none;
+		border: 1px solid var(--primary-fg);
+		border-radius: 5px;
+		padding: 5px 10px;
+
+		&:hover {
+			transform: scale(1.1);
+			transition: transform 1.5s;
+		}
 	}
 
 	.avatar {
