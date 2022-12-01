@@ -13,12 +13,11 @@ const LogIn = () => {
 }
 
 const LogInForm = styled.form`
+	flex: 1;
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	height: fit-content;
-	gap: 5px;
 	align-items: center;
-	/* border: 1px solid red; */
 
 	input {
 		background: inherit;
@@ -35,8 +34,10 @@ const LogInForm = styled.form`
 		background: inherit;
 		border: 1px solid var(--primary-fg);
 		border-radius: 5px;
-		margin-top: 10px;
+		margin-top: 75px;
 		color: inherit;
+		height: 27px;
+		width: 60px;
 	}
 `
 
