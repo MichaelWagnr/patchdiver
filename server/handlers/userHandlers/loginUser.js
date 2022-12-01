@@ -36,7 +36,16 @@ const loginUser = async (req, res, next) => {
 		httpOnly: true,
 	})
 
-	return res.status(200).json({ status: 200, message: 'Success', token })
+	const loggedInUser = {
+		_id: existingUser._id,
+		userName: existingUser.userName,
+		avatarSrc: existingUser.avatarSrc,
+		patchArray: existingUser.patchArray,
+	}
+
+	return res
+		.status(200)
+		.json({ status: 200, message: 'Success', user: loggedInUser })
 }
 
 module.exports = { loginUser }

@@ -51,6 +51,7 @@ const createUser = async (req, res) => {
 		email,
 		password,
 		avatarSrc: gravatarEndpoint,
+		patchArray: [],
 	}
 
 	const token = jwt.sign({ _id: _id }, process.env.JWT_SECRET, {
@@ -71,9 +72,16 @@ const createUser = async (req, res) => {
 			httpOnly: true,
 		})
 
+		const loggedInUser = {
+			_id: userObject._id,
+			userName: userObject.userName,
+			avatarSrc: userObject.avatarSrc,
+			patchArray: userObject.patchArray,
+		}
+
 		return res
 			.status(200)
-			.json({ status: 'Success', token, dbResponse: newUser })
+			.json({ status: 'Success', dbResponse: newUser, user: loggedInUser })
 	}
 	// Catch all
 	return res.status(500).json({ status: 500, message: 'Error occured' })

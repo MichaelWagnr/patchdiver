@@ -1,14 +1,84 @@
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { UserContext } from '../../contexts/UserContext'
 
 const SignUp = () => {
+	const [signUpData, setSignUpData] = useState({})
+	const { setUser } = useContext(UserContext)
+	const navigate = useNavigate()
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+
+		fetch('/api/users/', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+			body: JSON.stringify(signUpData),
+		})
+			.then((res) => {
+				console.log(res)
+				return res.json()
+			})
+			.then((data) => {
+				setUser(data.user)
+				navigate('/feed')
+			})
+			.catch((res) => {
+				console.log(res)
+			})
+	}
+
 	return (
-		<SignUpForm>
+		<SignUpForm
+			onSubmit={(e) => {
+				handleSubmit(e)
+			}}>
 			<label htmlFor="userName">Name</label>
-			<input type="text" name="userName" id="userName" autoComplete="off" />
+			<input
+				type="text"
+				name="userName"
+				id="userName"
+				autoComplete="off"
+				value={signUpData.userName}
+				onChange={(e) =>
+					setSignUpData({ ...signUpData, userName: e.target.value })
+				}
+			/>
 			<label htmlFor="email">Email</label>
-			<input type="text" name="email" id="email" autoComplete="off" />
+			<input
+				type="text"
+				name="email"
+				id="email"
+				autoComplete="off"
+				value={signUpData.email}
+				onChange={(e) =>
+					setSignUpData({ ...signUpData, email: e.target.value })
+				}
+			/>
 			<label htmlFor="email">Password</label>
-			<input type="password" name="password" id="password" />
+			<input
+				type="password"
+				name="password"
+				id="password"
+				value={signUpData.password}
+				onChange={(e) =>
+					setSignUpData({ ...signUpData, password: e.target.value })
+				}
+			/>
+			<label htmlFor="email">Confirm Password</label>
+			<input
+				type="password"
+				name="confirmPassword"
+				id="confirmPassword"
+				value={signUpData.confirmPassword}
+				onChange={(e) =>
+					setSignUpData({ ...signUpData, confirmPassword: e.target.value })
+				}
+			/>
 			<button className="sign-up">Sign Up</button>
 		</SignUpForm>
 	)

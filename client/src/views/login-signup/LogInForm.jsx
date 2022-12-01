@@ -1,13 +1,64 @@
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { UserContext } from '../../contexts/UserContext'
 
 const LogIn = () => {
+	const [logInData, setLogInData] = useState({})
+	const { setUser } = useContext(UserContext)
+	const navigate = useNavigate()
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+
+		fetch('/api/login/', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+			body: JSON.stringify(logInData),
+		})
+			.then((res) => {
+				console.log(res)
+				return res.json()
+			})
+			.then((data) => {
+				setUser(data.user)
+				navigate('/feed')
+			})
+			.catch((res) => {
+				console.log(res)
+			})
+	}
+
 	return (
-		<LogInForm>
+		<LogInForm
+			onSubmit={(e) => {
+				handleSubmit(e)
+			}}>
 			<label htmlFor="email">Email</label>
-			<input type="text" name="email" id="email" autoComplete="off" />
+			<input
+				type="text"
+				name="email"
+				id="email"
+				autoComplete="off"
+				value={logInData.email}
+				onChange={(e) => setLogInData({ ...logInData, email: e.target.value })}
+			/>
 			<label htmlFor="email">Password</label>
-			<input type="password" name="password" id="password" />
-			<button className="log-in">Log In</button>
+			<input
+				type="password"
+				name="password"
+				id="password"
+				value={logInData.password}
+				onChange={(e) =>
+					setLogInData({ ...logInData, password: e.target.value })
+				}
+			/>
+			<button className="log-in" type="submit">
+				Log In
+			</button>
 		</LogInForm>
 	)
 }
@@ -34,7 +85,7 @@ const LogInForm = styled.form`
 		background: inherit;
 		border: 1px solid var(--primary-fg);
 		border-radius: 5px;
-		margin-top: 75px;
+		margin-top: 107px;
 		color: inherit;
 		height: 27px;
 		width: 60px;

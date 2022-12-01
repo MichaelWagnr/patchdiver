@@ -5,7 +5,7 @@ import Spacer from '../../components/Spacer'
 import Patch from './Patch'
 import patchMockData from './Patch.placeHolders'
 
-const MainFeed = () => {
+const Feed = ({ profileView }) => {
 	const [editorIsActive, setEditorIsActive] = useState(false)
 
 	return (
@@ -16,7 +16,7 @@ const MainFeed = () => {
 				//TODO it would be nice if clicking the overlay also disactivated the active patch class
 				></Overlay>
 			)}
-			<Feed>
+			<FeedContainer>
 				<Spacer height="55px" width="400px" />
 				{patchMockData.map((patch) => (
 					<Patch
@@ -40,7 +40,7 @@ const MainFeed = () => {
 						patchData={patch.patchData}
 					/>
 				))}
-			</Feed>
+			</FeedContainer>
 			<EditorContainer className={editorIsActive ? 'active' : null}>
 				<Editor editorIsActive={editorIsActive} />
 			</EditorContainer>
@@ -61,7 +61,7 @@ const Overlay = styled.div`
 	z-index: 5;
 `
 
-const Feed = styled.section`
+const FeedContainer = styled.section`
 	height: 100vh;
 	overflow-y: scroll;
 `
@@ -87,4 +87,4 @@ const EditorContainer = styled.div`
 	}
 `
 
-export default MainFeed
+export default Feed

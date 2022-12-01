@@ -1,23 +1,66 @@
 import styled from 'styled-components'
 import { HiHeart } from 'react-icons/hi'
 import { MdLightMode, MdNightlight } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '../contexts/UserContext'
 
 const Header = () => {
+	const { user, setUser } = useContext(UserContext)
+	const navigate = useNavigate()
+
+	const handleLogOut = () => {
+		setUser(null)
+		fetch('/api/logout/')
+			.then((res) => res.json())
+			.then((data) => {
+				navigate('/')
+			})
+	}
+
 	return (
 		<StyledHeader>
 			<h1>
-				Patch Diver
+				<Link to="/feed" className="logo">
+					Patch Diver
+				</Link>
 				<MdLightMode className="mode" />
 			</h1>
 			{/* <Sponsor>
 				<HiHeart className="heart" />
 				Support
 			</Sponsor> */}
-			<Link className="log-in" to="/login">
-				Log In
-			</Link>
-			{/* <div className="avatar"></div> */}
+			{!user ? (
+				<Link className="log-in" to="/">
+					Log In
+				</Link>
+			) : (
+				<>
+					<div className="dropdown">
+						<span className="user-name">{user.userName}</span>
+						<img src={user.avatarSrc} alt={user.userName} className="avatar" />
+						<div className="menu">
+							<div className="spacer"></div>
+							<div
+								className="option"
+								role="button"
+								onClick={() => {
+									navigate('/profile/')
+								}}>
+								Profile
+							</div>
+							<div
+								className="option"
+								role="button"
+								onClick={() => {
+									handleLogOut()
+								}}>
+								LogOut
+							</div>
+						</div>
+					</div>
+				</>
+			)}
 		</StyledHeader>
 	)
 }
@@ -42,6 +85,11 @@ const StyledHeader = styled.header`
 		flex: 1;
 	}
 
+	.logo {
+		color: inherit;
+		text-decoration: none;
+	}
+
 	.mode {
 		font-size: 1.1rem;
 		margin: 0px 20px;
@@ -61,12 +109,76 @@ const StyledHeader = styled.header`
 		}
 	}
 
+	.user-name {
+		color: var(--primary-fg);
+		/* font-weight: lighter;
+		letter-spacing: -0.5px; */
+		font-size: 1rem;
+	}
+
 	.avatar {
-		height: 30px;
-		width: 30px;
+		height: 35px;
+		width: 35px;
 		border-radius: 50%;
-		border: 2px dotted var(--primary-fg);
+		/* border: 2px dotted var(--primary-fg); */
 		justify-self: end;
+	}
+
+	.dropdown {
+		span {
+			position: relative;
+			right: 10px;
+			bottom: 12px;
+		}
+	}
+
+	.dropdown:hover > .menu {
+		display: block;
+	}
+
+	.menu {
+		background: transparent;
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		width: 150px;
+		height: 150px;
+		display: none;
+
+		.spacer {
+			height: 50px;
+			background: transparent;
+		}
+
+		.option {
+			display: grid;
+			align-content: center;
+			justify-content: center;
+			height: 50px;
+			padding: 15px;
+			font-size: 1rem;
+			text-justify: center;
+			color: var(--secondary-fg-light);
+			/* border-bottom: 1px solid var(--secondary-fg-light); */
+			background: rgb(0, 0, 0, 0.5);
+			backdrop-filter: blur(3px);
+
+			&:hover {
+				background: rgb(0, 0, 0, 1);
+				/* backdrop-filter: blur(3px); */
+				/* color: var(--primary-fg);*/
+				/* border-bottom: 1px solid var(--primary-fg); */
+				/* background: rgba(125, 125, 125, 0.1); */
+				/* background: transparent; */
+				color: var(--primary-fg);
+
+				cursor: pointer;
+			}
+		}
+
+		&:hover {
+			display: block;
+		}
 	}
 `
 

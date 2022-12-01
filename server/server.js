@@ -32,7 +32,7 @@ express()
 	.get('/api/artwork', getArtSP)
 
 	// User endpoints
-	.get('/api/users', authorize, getAllUsers)
+	.get('/api/users', getAllUsers)
 	.get('/api/users/:id', getUserById)
 	.delete('/api/users/:id', deleteUserById)
 	.post('/api/users/', createUser)
@@ -44,7 +44,7 @@ express()
 	.get('/api/patches', getAllPatches)
 	.get('/api/patches/:id', getPatchById)
 	.delete('/api/patches/:id', deletePatchById)
-	.post('/api/patches/', createPatch)
+	.post('/api/patches/', authorize, createPatch)
 
 	.get('*', (req, res) =>
 		res.status(404).json({ status: 404, message: 'Invalid endpoint' })

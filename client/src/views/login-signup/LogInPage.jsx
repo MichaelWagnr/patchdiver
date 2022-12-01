@@ -94,7 +94,7 @@ const Form = styled.div`
 	flex-direction: column;
 	gap: 20px;
 	width: 300px;
-	height: 300px;
+	height: 320px;
 	padding: 20px;
 	border-radius: 5px;
 	justify-self: end;
