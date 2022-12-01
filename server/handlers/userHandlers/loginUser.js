@@ -1,6 +1,6 @@
-const { accessDB } = require('../../utils/accessDB')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const { accessDB } = require('../../utils/accessDB')
 
 const loginUser = async (req, res, next) => {
 	const { email, password } = req.body

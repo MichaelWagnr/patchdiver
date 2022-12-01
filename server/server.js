@@ -1,6 +1,7 @@
 const express = require('express')
 const helmet = require('helmet')
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser')
 const {
 	getArtSP,
 	getUserById,
@@ -13,6 +14,7 @@ const {
 	getPatchById,
 	deletePatchById,
 	createPatch,
+	getCurrentUser,
 } = require('./handlers')
 const { authorize } = require('./utils/authorize')
 
@@ -22,9 +24,10 @@ express()
 	.use(express.json())
 	.use(morgan('tiny'))
 	.use(helmet())
+	.use(cookieParser())
 	// .use((req, res, next) => {
 	// 	req.requestTime = new Date().toISOString()
-	// 	console.log(req.headers)
+	// 	console.log(req.cookies)
 	// 	next()
 	// })
 
@@ -38,6 +41,7 @@ express()
 	.post('/api/users/', createUser)
 
 	.post('/api/login/', loginUser)
+	.get('/api/persist/', getCurrentUser)
 	.get('/api/logout/', logoutUser)
 
 	// Patch endpoints

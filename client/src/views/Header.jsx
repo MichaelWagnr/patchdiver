@@ -13,9 +13,7 @@ const Header = () => {
 		setUser(null)
 		fetch('/api/logout/')
 			.then((res) => res.json())
-			.then((data) => {
-				navigate('/')
-			})
+			.catch((err) => console.log(err))
 	}
 
 	return (

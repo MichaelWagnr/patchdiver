@@ -10,6 +10,7 @@ const { getAllPatches } = require('./patchHandlers/getAllPatches')
 const { getPatchById } = require('./patchHandlers/getPatchById')
 const { deletePatchById } = require('./patchHandlers/deletePatchById')
 const { createPatch } = require('./patchHandlers/createPatch')
+const { getCurrentUser } = require('./userHandlers/getCurrentUser')
 
 module.exports = {
 	getAlbumArtMB,
@@ -24,4 +25,5 @@ module.exports = {
 	getPatchById,
 	deletePatchById,
 	createPatch,
+	getCurrentUser,
 }
