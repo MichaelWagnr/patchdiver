@@ -23,12 +23,13 @@ const Container = styled.div`
 	div {
 		height: 100vh;
 		width: 100vw;
-		background: rgb(0, 0, 0, 0.7);
+		background: rgb(0, 0, 0, 0.808);
 		backdrop-filter: blur(10px);
 		display: grid;
 		place-content: center;
 		font-size: 3rem;
-		font-weight: bold;
+		font-weight: lighter;
+		letter-spacing: 45px;
 	}
 
 	#video {

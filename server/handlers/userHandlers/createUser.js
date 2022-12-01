@@ -7,11 +7,11 @@ const md5 = require('blueimp-md5')
 const createUser = async (req, res) => {
 	let { userName, email, password, confirmPassword } = req.body
 
-	email = email.trim().toLowerCase()
-
 	// Validation
-	if (!email || !password || !confirmPassword)
-		return res.status(400).json({ status: 400, message: 'Missing fields' })
+	if (!email || !password || !confirmPassword || !userName)
+		return res
+			.status(400)
+			.json({ status: 400, message: 'Error: Missing fields' })
 
 	if (!/.+@.+\.(com|ca|org|io)/.test(email))
 		return res
@@ -39,6 +39,7 @@ const createUser = async (req, res) => {
 		})
 
 	// Creating user object
+	email = email.trim().toLowerCase()
 	const hashedEmail = md5(email)
 	const gravatarEndpoint = `https://www.gravatar.com/avatar/${hashedEmail}?f=y&d=retro`
 	password = await bcrypt.hash(password, 12)

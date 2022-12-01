@@ -5,6 +5,7 @@ import { UserContext } from '../../contexts/UserContext'
 
 const LogIn = () => {
 	const [logInData, setLogInData] = useState({})
+	const [error, setError] = useState(null)
 	const { setUser } = useContext(UserContext)
 	const navigate = useNavigate()
 
@@ -24,6 +25,10 @@ const LogIn = () => {
 				return res.json()
 			})
 			.then((data) => {
+				console.log(data)
+				if (data.status !== 200) {
+					return setError(data.message)
+				}
 				setUser(data.user)
 				navigate('/feed')
 			})
@@ -56,6 +61,8 @@ const LogIn = () => {
 					setLogInData({ ...logInData, password: e.target.value })
 				}
 			/>
+			<div className="error">{error ? error : null}</div>
+
 			<button className="log-in" type="submit">
 				Log In
 			</button>
@@ -75,6 +82,33 @@ const LogInForm = styled.form`
 		border: 1px solid var(--primary-fg);
 		height: 28px;
 		color: var(--primary-fg);
+	}
+
+	.error {
+		grid-column: 1 / span 2;
+		position: absolute;
+		left: 0;
+		top: 100px;
+		font-size: 0.8rem;
+		animation: beat 6s ease-in-out infinite;
+		width: 300px;
+		display: grid;
+		place-content: center;
+		span {
+			width: fit-content;
+		}
+	}
+
+	@keyframes beat {
+		0% {
+			color: hsl(0, 100%, 25%);
+		}
+		50% {
+			color: hsl(0, 100%, 45%);
+		}
+		100% {
+			color: hsl(0, 100%, 25%);
+		}
 	}
 
 	.log-in {

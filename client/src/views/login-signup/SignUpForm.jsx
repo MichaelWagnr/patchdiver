@@ -5,6 +5,7 @@ import { UserContext } from '../../contexts/UserContext'
 
 const SignUp = () => {
 	const [signUpData, setSignUpData] = useState({})
+	const [error, setError] = useState(null)
 	const { setUser } = useContext(UserContext)
 	const navigate = useNavigate()
 
@@ -24,6 +25,10 @@ const SignUp = () => {
 				return res.json()
 			})
 			.then((data) => {
+				console.log(data)
+				if (data.status !== 200) {
+					return setError(data.message)
+				}
 				setUser(data.user)
 				navigate('/feed')
 			})
@@ -79,6 +84,9 @@ const SignUp = () => {
 					setSignUpData({ ...signUpData, confirmPassword: e.target.value })
 				}
 			/>
+			<div className="error">
+				<p>{error ? error : null}</p>
+			</div>
 			<button className="sign-up">Sign Up</button>
 		</SignUpForm>
 	)
@@ -96,6 +104,33 @@ const SignUpForm = styled.form`
 		border: 1px solid var(--primary-fg);
 		height: 28px;
 		color: var(--primary-fg);
+	}
+
+	.error {
+		grid-column: 1 / span 2;
+		position: absolute;
+		left: 0;
+		bottom: 142px;
+		font-size: 0.8rem;
+		animation: beat 6s ease-in-out infinite;
+		width: 300px;
+		display: grid;
+		place-content: center;
+		span {
+			width: fit-content;
+		}
+	}
+
+	@keyframes beat {
+		0% {
+			color: hsl(0, 100%, 25%);
+		}
+		50% {
+			color: hsl(0, 100%, 45%);
+		}
+		100% {
+			color: hsl(0, 100%, 25%);
+		}
 	}
 
 	.sign-up {
