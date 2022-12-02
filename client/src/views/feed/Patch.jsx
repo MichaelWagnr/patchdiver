@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { TbTag } from 'react-icons/tb'
 import { BiLike } from 'react-icons/bi'
 import { parseVoice } from '../../components/Dx100Editor/Dx100.parseVoice'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { PatchContext } from '../../contexts/PatchContext'
 import { UserContext } from '../../contexts/UserContext'
 
@@ -28,13 +28,28 @@ const Patch = ({
 	const { setVoice, setPatch } = useContext(PatchContext)
 	const { _id: userId } = useContext(UserContext)
 
+	const [isLiked, setIsLiked] = useState(false)
+
 	const handleVoiceLoad = () => {
 		setVoice(parseVoice(patchData))
 		setPatch(parseVoice(patchData))
 	}
 
 	const handleLike = () => {
+		if (isLiked) return
+
+		// TODO attribute like to a user with userId
 		fetch(`/api/patches/like/${_id}?userId=${userId}`)
+			.then((res) => {
+				console.log(res)
+				return res.json()
+			})
+			.then((data) => {
+				console.log(data)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
 	}
 
 	return (
@@ -106,8 +121,15 @@ const Patch = ({
 			<div className="description">
 				{description} <br /> <span className="created">created: {created}</span>
 			</div>
-			<div className="like" onClick={() => {}}>
-				<div className="likes">{likes > 0 ? likes : '.'}</div>
+			<div
+				className="like"
+				onClick={() => {
+					setIsLiked(true)
+					handleLike()
+				}}>
+				<div className="likes">
+					{isLiked ? likes + 1 : likes > 0 ? likes : '.'}
+				</div>
 				<BiLike className="icon" />
 			</div>
 		</PatchCard>
@@ -274,6 +296,10 @@ const PatchCard = styled.div`
 		grid-column: 6;
 		grid-row: 3;
 		place-self: center;
+
+		&:hover {
+			cursor: pointer;
+		}
 
 		.likes {
 			position: relative;
