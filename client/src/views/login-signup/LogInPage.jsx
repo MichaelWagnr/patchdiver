@@ -127,6 +127,8 @@ const Info = styled.div`
 	backdrop-filter: blur(7px);
 	justify-self: center;
 	align-self: center;
+	position: relative;
+	top: 20px;
 
 	h1 {
 		font-size: 2.1rem;

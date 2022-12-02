@@ -4,6 +4,7 @@ import Editor from '../../components/Dx100Editor/Editor'
 import Spacer from '../../components/Spacer'
 import Patch from './Patch'
 import patchMockData from './Patch.placeHolders'
+import ProfileCard from './ProfileCard'
 
 const Feed = ({ profileView }) => {
 	const [editorIsActive, setEditorIsActive] = useState(false)
@@ -16,6 +17,7 @@ const Feed = ({ profileView }) => {
 				//TODO it would be nice if clicking the overlay also disactivated the active patch class
 				></Overlay>
 			)}
+			{profileView && <ProfileCard />}
 			<FeedContainer>
 				<Spacer height="55px" width="400px" />
 				{patchMockData.map((patch) => (

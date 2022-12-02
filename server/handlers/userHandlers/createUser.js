@@ -82,7 +82,12 @@ const createUser = async (req, res) => {
 
 		return res
 			.status(200)
-			.json({ status: 'Success', dbResponse: newUser, user: loggedInUser })
+			.json({
+				status: 200,
+				message: 'Success!',
+				dbResponse: newUser,
+				user: loggedInUser,
+			})
 	}
 	// Catch all
 	return res.status(500).json({ status: 500, message: 'Error occured' })
