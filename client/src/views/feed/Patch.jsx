@@ -122,7 +122,7 @@ const Patch = ({
 				{description} <br /> <span className="created">created: {created}</span>
 			</div>
 			<div
-				className="like"
+				className={isLiked ? 'like is-liked' : 'like'}
 				onClick={() => {
 					setIsLiked(true)
 					handleLike()
@@ -316,6 +316,13 @@ const PatchCard = styled.div`
 			left: 10px;
 			color: var(--primary-fg);
 		}
+	}
+
+	.is-liked,
+	.is-liked * {
+		color: var(--tertiary-fg);
+		stroke: var(--tertiary-fg);
+		border-color: var(--tertiary-fg);
 	}
 
 	/*

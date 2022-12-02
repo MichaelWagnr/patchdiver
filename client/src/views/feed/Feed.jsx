@@ -4,8 +4,8 @@ import Editor from '../../components/Dx100Editor/Editor'
 import EllipsisSpinner from '../../components/EllipsisSpinner'
 import Spacer from '../../components/Spacer'
 import { UserContext } from '../../contexts/UserContext'
+import FilterForm from './FilterForm'
 import Patch from './Patch'
-import patchMockData from './Patch.placeHolders'
 import ProfileCard from './ProfileCard'
 
 const Feed = ({ profileView }) => {
@@ -14,12 +14,13 @@ const Feed = ({ profileView }) => {
 	const [noResultsStatus, setNoResultsStatus] = useState(false)
 	const { user } = useContext(UserContext)
 
-	const loadPatches = () => {
+	const loadPatches = (filterData) => {
 		setNoResultsStatus(false)
+		const endpoint = `/api/patches?profileView=${profileView}&userId=${
+			user ? user._id : null
+		}`
 
-		fetch(
-			`/api/patches?profileView=${profileView}&userId=${user ? user._id : null}`
-		)
+		fetch(endpoint)
 			.then((res) => {
 				return res.json()
 			})
@@ -45,6 +46,8 @@ const Feed = ({ profileView }) => {
 				></Overlay>
 			)}
 			{profileView && <ProfileCard />}
+
+			<FilterForm loadPatches={loadPatches} />
 			<FeedContainer>
 				<Spacer height="55px" width="400px" />
 				{patchArray ? (

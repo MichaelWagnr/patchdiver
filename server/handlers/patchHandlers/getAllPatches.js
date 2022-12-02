@@ -7,7 +7,12 @@ const getAllPatches = async (req, res) => {
 
 	if (profileView === 'true' && userId !== 'null') {
 		const patches = await accessDB((db) =>
-			db.collection('patches').find({ userId }).limit(25).toArray()
+			db
+				.collection('patches')
+				.find({ userId })
+				.sort({ timestamp: -1 })
+				.limit(25)
+				.toArray()
 		)
 
 		if (patches)
@@ -18,7 +23,7 @@ const getAllPatches = async (req, res) => {
 	// If viewing the main feed return any patches
 
 	const patches = await accessDB((db) =>
-		db.collection('patches').find().limit(25).toArray()
+		db.collection('patches').find().sort({ timestamp: -1 }).limit(25).toArray()
 	)
 
 	if (patches) return res.status(200).json({ status: 200, dbResponse: patches })

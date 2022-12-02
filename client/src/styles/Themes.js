@@ -19,6 +19,8 @@ const Themes = createGlobalStyle`
     --secondary-fg-dark: #3C3D71;
     /* --secondary-fg-dark: #232458; */
     /* --secondary-fg-dark: #090A3E; */
+
+    --tertiary-fg: #13B5B8;
     --vertical-border: 2px dotted var(--primary-fg);
     
   }
