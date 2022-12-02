@@ -6,12 +6,12 @@ export const genreTags = [
 	'SynthWave',
 	'EBM',
 	'Industrial',
-	'VaporWave',
-	'DreamPop',
-	'Pop',
 	'Indie',
-	'Alternative',
+	'VaporWave',
+	'Pop',
+	'DreamPop',
 	'Other',
+	'Alternative',
 ]
 
 export const patchTags = [

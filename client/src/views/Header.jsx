@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 
-const Header = () => {
+const Header = ({ theme, setTheme }) => {
 	const { user, setUser } = useContext(UserContext)
 	const navigate = useNavigate()
 
@@ -22,7 +22,21 @@ const Header = () => {
 				<Link to="/feed" className="logo">
 					Patch Diver
 				</Link>
-				<MdLightMode className="mode" />
+				{theme === 'dark' ? (
+					<MdLightMode
+						className="mode"
+						onClick={() => {
+							setTheme('light')
+						}}
+					/>
+				) : (
+					<MdNightlight
+						className="mode"
+						onClick={() => {
+							setTheme('dark')
+						}}
+					/>
+				)}
 			</h1>
 			{/* <Sponsor>
 				<HiHeart className="heart" />
@@ -91,6 +105,7 @@ const StyledHeader = styled.header`
 	.mode {
 		font-size: 1.1rem;
 		margin: 0px 20px;
+		cursor: pointer;
 	}
 
 	.log-in {
