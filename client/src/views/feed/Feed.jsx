@@ -1,13 +1,40 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Editor from '../../components/Dx100Editor/Editor'
+import EllipsisSpinner from '../../components/EllipsisSpinner'
 import Spacer from '../../components/Spacer'
+import { UserContext } from '../../contexts/UserContext'
 import Patch from './Patch'
 import patchMockData from './Patch.placeHolders'
 import ProfileCard from './ProfileCard'
 
 const Feed = ({ profileView }) => {
 	const [editorIsActive, setEditorIsActive] = useState(false)
+	const [patchArray, setPatchArray] = useState(null)
+	const [noResultsStatus, setNoResultsStatus] = useState(false)
+	const { user } = useContext(UserContext)
+
+	const loadPatches = () => {
+		setNoResultsStatus(false)
+
+		fetch(
+			`/api/patches?profileView=${profileView}&userId=${user ? user._id : null}`
+		)
+			.then((res) => {
+				return res.json()
+			})
+			.then((data) => {
+				if (data.status !== 200) setNoResultsStatus(true)
+				setPatchArray(data.dbResponse)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+
+	useEffect(() => {
+		loadPatches()
+	}, [profileView])
 
 	return (
 		<Page>
@@ -20,28 +47,34 @@ const Feed = ({ profileView }) => {
 			{profileView && <ProfileCard />}
 			<FeedContainer>
 				<Spacer height="55px" width="400px" />
-				{patchMockData.map((patch) => (
-					<Patch
-						setEditorIsActive={setEditorIsActive}
-						editorIsActive={editorIsActive}
-						key={patch._id}
-						_id={patch._id}
-						created={patch.created}
-						userName={patch.userName}
-						userAvatar={patch.userAvatar}
-						manufacturer={patch.manufacturer}
-						model={patch.model}
-						patchName={patch.patchName}
-						description={patch.description}
-						patchTag={patch.patchTag}
-						genreTag={patch.genreTag}
-						inspiredArtist={patch.inspiredArtist}
-						inspiredTrack={patch.inspiredTrack}
-						albumAvatar={patch.albumAvatar}
-						likes={patch.likes}
-						patchData={patch.patchData}
-					/>
-				))}
+				{patchArray ? (
+					patchArray.map((patch) => (
+						<Patch
+							setEditorIsActive={setEditorIsActive}
+							editorIsActive={editorIsActive}
+							key={patch._id}
+							_id={patch._id}
+							created={patch.created}
+							userName={patch.userName}
+							userAvatar={patch.userAvatar}
+							manufacturer={patch.manufacturer}
+							model={patch.model}
+							patchName={patch.patchName}
+							description={patch.description}
+							patchTag={patch.patchTag}
+							genreTag={patch.genreTag}
+							inspiredArtist={patch.inspiredArtist}
+							inspiredTrack={patch.inspiredTrack}
+							albumAvatar={patch.albumAvatar}
+							likes={patch.likes}
+							patchData={patch.patchData}
+						/>
+					))
+				) : noResultsStatus ? (
+					<div>No Results Found</div>
+				) : (
+					<EllipsisSpinner size="large" />
+				)}
 			</FeedContainer>
 			<EditorContainer className={editorIsActive ? 'active' : null}>
 				<Editor editorIsActive={editorIsActive} />

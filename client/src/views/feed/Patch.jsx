@@ -4,6 +4,7 @@ import { BiLike } from 'react-icons/bi'
 import { parseVoice } from '../../components/Dx100Editor/Dx100.parseVoice'
 import { useContext } from 'react'
 import { PatchContext } from '../../contexts/PatchContext'
+import { UserContext } from '../../contexts/UserContext'
 
 const Patch = ({
 	setEditorIsActive,
@@ -25,9 +26,15 @@ const Patch = ({
 	patchData,
 }) => {
 	const { setVoice, setPatch } = useContext(PatchContext)
+	const { _id: userId } = useContext(UserContext)
+
 	const handleVoiceLoad = () => {
 		setVoice(parseVoice(patchData))
 		setPatch(parseVoice(patchData))
+	}
+
+	const handleLike = () => {
+		fetch(`/api/patches/like/${_id}?userId=${userId}`)
 	}
 
 	return (
@@ -99,8 +106,8 @@ const Patch = ({
 			<div className="description">
 				{description} <br /> <span className="created">created: {created}</span>
 			</div>
-			<div className="like">
-				<div className="likes">{likes}</div>
+			<div className="like" onClick={() => {}}>
+				<div className="likes">{likes > 0 ? likes : '.'}</div>
 				<BiLike className="icon" />
 			</div>
 		</PatchCard>
@@ -195,7 +202,7 @@ const PatchCard = styled.div`
 		font-size: 0.8rem;
 		color: var(--secondary-fg-light);
 		position: relative;
-		bottom: 16px;
+		bottom: 24px;
 	}
 
 	.inspiration {

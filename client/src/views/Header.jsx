@@ -70,7 +70,7 @@ const StyledHeader = styled.header`
 	backdrop-filter: blur(3px);
 	width: 100%;
 	height: 50px;
-	z-index: 10;
+	z-index: 15;
 	display: flex;
 	padding: 20px;
 	align-items: center;
@@ -156,6 +156,7 @@ const StyledHeader = styled.header`
 			padding: 15px;
 			font-size: 1rem;
 			text-justify: center;
+			z-index: 12;
 			color: var(--secondary-fg-light);
 			/* border-bottom: 1px solid var(--secondary-fg-light); */
 			background: rgb(0, 0, 0, 0.5);

@@ -10,6 +10,7 @@ const { getAllPatches } = require('./patchHandlers/getAllPatches')
 const { getPatchById } = require('./patchHandlers/getPatchById')
 const { deletePatchById } = require('./patchHandlers/deletePatchById')
 const { createPatch } = require('./patchHandlers/createPatch')
+const { likePatchById } = require('./patchHandlers/likePatchById')
 const { getCurrentUser } = require('./userHandlers/getCurrentUser')
 
 module.exports = {
@@ -25,5 +26,6 @@ module.exports = {
 	getPatchById,
 	deletePatchById,
 	createPatch,
+	likePatchById,
 	getCurrentUser,
 }

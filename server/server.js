@@ -15,6 +15,7 @@ const {
 	deletePatchById,
 	createPatch,
 	getCurrentUser,
+	likePatchById,
 } = require('./handlers')
 const { authorize } = require('./utils/authorize')
 
@@ -47,6 +48,7 @@ express()
 	// Patch endpoints
 	.get('/api/patches', getAllPatches)
 	.get('/api/patches/:id', getPatchById)
+	.get('/api/patches/like/:id', likePatchById)
 	.delete('/api/patches/:id', deletePatchById)
 	.post('/api/patches/', authorize, createPatch)
 

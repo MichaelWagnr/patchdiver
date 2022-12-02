@@ -1,17 +1,22 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Tag from './Tag'
 import { genreTags, patchTags } from './Form.tags'
 import { PatchContext } from '../../../../contexts/PatchContext'
 import EllipsisSpinner from '../../../EllipsisSpinner'
+import { UserContext } from '../../../../contexts/UserContext'
+import { compileVoice } from '../../Dx100.parseVoice'
 
 const Form = () => {
 	const { voice } = useContext(PatchContext)
+	const { user } = useContext(UserContext)
 	const [fetchStatus, setFetchStatus] = useState(null)
+	const [isSaving, setIsSaving] = useState(false)
 	const [formData, setFormData] = useState({
 		created: '',
-		userName: 'Jane Doe',
-		userAvatar: '',
+		userName: user.userName,
+		userAvatar: user.avatarSrc,
+		userId: user._id,
 		manufacturer: 'Yamaha',
 		model: 'DX100',
 		patchName: '',
@@ -22,8 +27,28 @@ const Form = () => {
 		inspiredTrack: '',
 		albumAvatar: '',
 		likes: 0,
-		patchData: voice,
+		patchData: compileVoice(voice),
 	})
+
+	useEffect(() => {
+		if (user) {
+			setFormData({
+				...formData,
+				userName: user.userName,
+				userAvatar: user.avatarSrc,
+				userId: user._id,
+			})
+		}
+	}, [user])
+
+	useEffect(() => {
+		if (voice) {
+			setFormData({
+				...formData,
+				patchData: compileVoice(voice),
+			})
+		}
+	}, [voice])
 
 	const handleInputChange = (e) => {
 		const i = e.target
@@ -46,6 +71,7 @@ const Form = () => {
 				return res.json()
 			})
 			.then((data) => {
+				console.log(data)
 				if (data.imgSrc !== undefined) {
 					setFormData({ ...formData, albumAvatar: data.imgSrc })
 					return setFetchStatus(null)
@@ -54,7 +80,7 @@ const Form = () => {
 					return setFetchStatus('404')
 				}
 			})
-			.catch()
+			.catch((err) => console.log(err))
 	}
 
 	const handleBlur = () => {
@@ -69,8 +95,36 @@ const Form = () => {
 		}
 	}
 
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		setIsSaving(true)
+
+		fetch('/api/patches/', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+			body: JSON.stringify(formData),
+		})
+			.then((res) => {
+				console.log(res)
+				return res.json()
+			})
+			.then((data) => {
+				setIsSaving(false)
+				// if (data.status === 401) return alert(data.message)
+				if (data.status !== 200) return alert(data.message)
+				alert('Patch successfully saved to your profile!')
+				console.log(data)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+
 	return (
-		<StyledForm>
+		<StyledForm onSubmit={(e) => handleSubmit(e)}>
 			<label htmlFor="patchName">Patch Name</label>
 			<input
 				type="text"
@@ -149,7 +203,8 @@ const Form = () => {
 			<textarea
 				autoComplete="off"
 				name="description"
-				id="description"></textarea>
+				id="description"
+				onChange={(e) => handleInputChange(e)}></textarea>
 
 			<Tags>
 				<div className="genre tags">
@@ -186,7 +241,9 @@ const Form = () => {
 					</div>
 				</div>
 			</Tags>
-			<button type="submit">Save Patch</button>
+			<button type="submit" disabled={isSaving ? true : false}>
+				{isSaving ? <EllipsisSpinner /> : 'Save Patch'}
+			</button>
 		</StyledForm>
 	)
 }
