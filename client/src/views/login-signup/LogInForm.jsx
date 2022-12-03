@@ -21,19 +21,17 @@ const LogIn = () => {
 			body: JSON.stringify(logInData),
 		})
 			.then((res) => {
-				console.log(res)
 				return res.json()
 			})
 			.then((data) => {
-				console.log(data)
 				if (data.status !== 200) {
 					return setError(data.message)
 				}
 				setUser(data.user)
 				navigate('/feed')
 			})
-			.catch((res) => {
-				console.log(res)
+			.catch((err) => {
+				console.log(err)
 			})
 	}
 
