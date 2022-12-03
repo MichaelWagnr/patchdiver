@@ -9,6 +9,7 @@ import {
 
 const FilterForm = ({ loadPatches }) => {
 	const [filterIsActive, setFilterIsActive] = useState(false)
+	//TODO lift formData and setFormData state, so that filter persists between profile and main view
 	const [formData, setFormData] = useState({
 		orderBy: 'mostLiked',
 		genreTag: '',
@@ -18,7 +19,9 @@ const FilterForm = ({ loadPatches }) => {
 	const handleInputChange = (e) => {
 		const i = e.target
 		const { type, value } = e.target.dataset
-		if (type && value) {
+		if (type && value && value === formData[type]) {
+			return setFormData({ ...formData, [type]: '' })
+		} else if (type && value) {
 			return setFormData({ ...formData, [type]: value })
 		} else {
 			return setFormData({ ...formData, [i.id]: i.value })
@@ -41,7 +44,11 @@ const FilterForm = ({ loadPatches }) => {
 			{filterIsActive && (
 				<StyledForm>
 					<h3>Filter</h3>
-					<form onSubmit={() => loadPatches(formData)}>
+					<form
+						onSubmit={(e) => {
+							e.preventDefault()
+							loadPatches(formData)
+						}}>
 						<label htmlFor="orderBy">Order By</label>
 						<select
 							id="orderBy"

@@ -16,16 +16,25 @@ const Feed = ({ profileView }) => {
 
 	const loadPatches = (filterData) => {
 		setNoResultsStatus(false)
+
 		const endpoint = `/api/patches?profileView=${profileView}&userId=${
 			user ? user._id : null
-		}`
+		}&orderBy=${filterData?.orderBy ? filterData.orderBy : null}&genreTag=${
+			filterData?.genreTag ? filterData.genreTag : null
+		}&patchTag=${filterData?.patchTag ? filterData.patchTag : null}`
 
 		fetch(endpoint)
 			.then((res) => {
 				return res.json()
 			})
 			.then((data) => {
+				console.log(data.dbResponse)
 				if (data.status !== 200) setNoResultsStatus(true)
+				if (data.dbResponse.length === 0)
+					alert('No patches found, please adjust filter')
+				//TODO when filter results return an empty array it
+				//TODO would be nice to have the feed print an error
+				// if (data.dbResponse === []) setNoResultsStatus(true)
 				setPatchArray(data.dbResponse)
 			})
 			.catch((err) => {
