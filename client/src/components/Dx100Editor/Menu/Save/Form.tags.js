@@ -12,6 +12,8 @@ export const genreTags = [
 	'DreamPop',
 	'Other',
 	'Alternative',
+	'Rock',
+	'Hip Hop',
 ]
 
 export const patchTags = [

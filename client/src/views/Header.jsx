@@ -22,7 +22,8 @@ const Header = ({ theme, setTheme }) => {
 				<Link to="/feed" className="logo">
 					Patch Diver
 				</Link>
-				{theme === 'dark' ? (
+				{/* TODO implement light theme */}
+				{/* {theme === 'dark' ? (
 					<MdLightMode
 						className="mode"
 						onClick={() => {
@@ -36,12 +37,12 @@ const Header = ({ theme, setTheme }) => {
 							setTheme('dark')
 						}}
 					/>
-				)}
+				)} */}
 			</h1>
-			{/* <Sponsor>
+			<Support to="/support">
 				<HiHeart className="heart" />
 				Support
-			</Sponsor> */}
+			</Support>
 			{!user ? (
 				<Link className="log-in" to="/">
 					Log In
@@ -196,8 +197,9 @@ const StyledHeader = styled.header`
 	}
 `
 
-const Sponsor = styled.button`
+const Support = styled(Link)`
 	padding: 4px 12px;
+	margin-right: 10px;
 	display: flex;
 	align-items: center;
 	gap: 5px;
@@ -206,6 +208,8 @@ const Sponsor = styled.button`
 	border: 1px solid var(--primary-bg-light);
 	border-radius: 3px;
 	transition: transform 1.5s;
+	text-decoration: none;
+	font-size: 0.8rem;
 
 	&:hover {
 		transform: scale(1.1);

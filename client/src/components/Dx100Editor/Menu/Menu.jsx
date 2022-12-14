@@ -10,11 +10,11 @@ const Menu = ({ menuIsActive, setTheme }) => {
 	return (
 		<>
 			<Navigation className={menuIsActive ? 'active' : null}>
-				<Option to="menu/main">Main</Option>
+				{/* <Option to="menu/main">Main</Option> */}
 				<Option to="menu/Load">Load</Option>
 				<Option to="menu/save">Save</Option>
 				<Option to="menu/theme">Theme</Option>
-				<Option to="menu/about">About</Option>
+				{/* <Option to="menu/about">About</Option> */}
 			</Navigation>
 			<MenuSection className={menuIsActive ? 'active' : null}>
 				<Routes>

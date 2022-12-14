@@ -15,6 +15,9 @@ const Themes = createGlobalStyle`
     --secondary-fg-dark: #3C3D71;
 
     --tertiary-fg: #13B5B8;
+
+    --heart-light: hsl(0, 100%, 35%);
+    --heart-dark: hsl(0, 100%, 15%);
   }
 
   // DX100 Themes
