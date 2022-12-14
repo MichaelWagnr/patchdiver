@@ -2,6 +2,10 @@ const express = require('express')
 const helmet = require('helmet')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
+const rateLimit = require('express-rate-limit')
+const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean')
+const hpp = require('hpp')
 const {
 	getArtSP,
 	getUserById,
@@ -21,11 +25,22 @@ const { authorize } = require('./utils/authorize')
 
 const port = 8000
 
+const limiter = rateLimit({
+	max: 250,
+	windowMs: 60 * 60 * 1000,
+	message: 'Too many requests from this IP, please try again in an hour.',
+})
+
 express()
+	.use(helmet())
 	.use(express.json())
 	.use(morgan('tiny'))
-	.use(helmet())
 	.use(cookieParser())
+	.use(mongoSanitize())
+	.use(xss())
+	.use(hpp())
+	.use('/api', limiter)
+
 	// .use((req, res, next) => {
 	// 	req.requestTime = new Date().toISOString()
 	// 	console.log(req.cookies)
