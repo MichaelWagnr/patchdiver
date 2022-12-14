@@ -82,7 +82,7 @@ const StyledHeader = styled.header`
 	top: 0;
 	background: rgb(0, 0, 0, 0.5);
 	backdrop-filter: blur(3px);
-	width: 100%;
+	width: 1440px;
 	height: 50px;
 	z-index: 15;
 	display: flex;
