@@ -95,7 +95,11 @@ const Feed = ({ profileView }) => {
 	)
 }
 
-const Page = styled.main``
+const Page = styled.main`
+	width: 1440px;
+	min-height: 500px;
+	position: relative;
+`
 
 const Overlay = styled.div`
 	width: 100vw;

@@ -14,7 +14,7 @@ const ProfileCard = () => {
 					<h2>{user.userName}</h2>
 					<div className="info">
 						<div className="description"></div>
-						<p className="inspired">Inspired by:</p>
+						{/* <p className="inspired">Inspired by:</p> */}
 						<div className="badges">
 							<div className="first-row">
 								<div className="badge"></div>
