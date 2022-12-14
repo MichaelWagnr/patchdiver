@@ -3,17 +3,6 @@ import styled from 'styled-components'
 const NotFound = () => {
 	return (
 		<Container>
-			<video
-				autoPlay
-				muted
-				loop
-				poster="true"
-				id="video"
-				onPlay={(e) => {
-					e.target.playbackRate = 0.4
-				}}>
-				<source src="barz.mp4" type="video/mp4" />
-			</video>
 			<div>404: Page not found</div>
 		</Container>
 	)
@@ -29,7 +18,7 @@ const Container = styled.div`
 		place-content: center;
 		font-size: 3rem;
 		font-weight: lighter;
-		letter-spacing: 45px;
+		letter-spacing: 35px;
 	}
 
 	#video {

@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 import { HiHeart } from 'react-icons/hi'
 import { MdLightMode, MdNightlight } from 'react-icons/md'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 
 const Header = ({ theme, setTheme }) => {
 	const { user, setUser } = useContext(UserContext)
 	const navigate = useNavigate()
+	const location = useLocation()
+	console.log(location)
 
 	const handleLogOut = () => {
 		setUser(null)
@@ -39,10 +41,12 @@ const Header = ({ theme, setTheme }) => {
 					/>
 				)} */}
 			</h1>
-			<Support to="/support">
-				<HiHeart className="heart" />
-				Support
-			</Support>
+			{location.pathname !== '/' && (
+				<Support to="/support">
+					<HiHeart className="heart" />
+					Support
+				</Support>
+			)}
 			{!user ? (
 				<Link className="log-in" to="/">
 					Log In

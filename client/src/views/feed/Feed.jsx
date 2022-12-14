@@ -29,7 +29,7 @@ const Feed = ({ profileView }) => {
 			})
 			.then((data) => {
 				if (data.status !== 200) setNoResultsStatus(true)
-				if (data.dbResponse.length === 0)
+				if (data.dbResponse.length === 0 && !profileView)
 					alert('No patches found, please adjust filter')
 				//TODO when filter results return an empty array it
 				//TODO would be nice to have the feed print an error
