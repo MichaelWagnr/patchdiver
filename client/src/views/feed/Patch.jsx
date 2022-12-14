@@ -335,7 +335,7 @@ const PatchCard = styled.div`
 		height: 50px;
 		position: absolute;
 		top: 40px;
-		left: calc((100vw - 660px) / 2);
+		left: calc((100% - 660px) / 2);
 		z-index: 10;
 
 		grid-template-columns: 40px 60px 140px 100px 1fr 40px;

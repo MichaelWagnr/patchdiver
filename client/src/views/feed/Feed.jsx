@@ -118,12 +118,14 @@ const FeedContainer = styled.section`
 `
 
 const EditorContainer = styled.div`
-	width: 100%;
-	max-width: fit-content;
+	/* width: 100%; */
+	/* width: fit-content; */
 	position: absolute;
-	@media only screen and (min-width: 1334px) {
+	left: calc((100% - 1334px) / 2);
+	/* @media only screen and (min-width: 1334px) {
 		left: calc((100vw - 1334px) / 2);
-	}
+	} */
+	/* margin: 0px auto; */
 	top: 2000px;
 	opacity: 0;
 	overflow-x: scroll;
