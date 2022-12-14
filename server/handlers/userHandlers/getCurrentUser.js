@@ -38,6 +38,7 @@ const getCurrentUser = async (req, res) => {
 			_id: user._id,
 			userName: user.userName,
 			avatarSrc: user.avatarSrc,
+			likedPatches: user.likedPatches,
 			patchArray: user.patchArray,
 		}
 

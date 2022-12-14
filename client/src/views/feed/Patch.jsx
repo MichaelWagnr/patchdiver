@@ -24,11 +24,18 @@ const Patch = ({
 	albumAvatar,
 	likes,
 	patchData,
+	user,
 }) => {
 	const { setVoice, setPatch } = useContext(PatchContext)
-	const { _id: userId } = useContext(UserContext)
 
-	const [isLiked, setIsLiked] = useState(false)
+	const [isLiked, setIsLiked] = useState(() => {
+		if (user) {
+			const isCurrentlyLiked = user.likedPatches.includes(_id)
+			return isCurrentlyLiked
+		} else {
+			return false
+		}
+	})
 
 	const handleVoiceLoad = () => {
 		setVoice(parseVoice(patchData))
@@ -37,9 +44,10 @@ const Patch = ({
 
 	const handleLike = () => {
 		if (isLiked) return
+		if (!user) return
 
-		// TODO attribute like to a user with userId
-		fetch(`/api/patches/like/${_id}?userId=${userId}`)
+		setIsLiked(true)
+		fetch(`/api/patches/like/${_id}?userId=${user._id}`)
 			.then((res) => {
 				console.log(res)
 				return res.json()
@@ -124,7 +132,6 @@ const Patch = ({
 			<div
 				className={isLiked ? 'like is-liked' : 'like'}
 				onClick={() => {
-					setIsLiked(true)
 					handleLike()
 				}}>
 				<div className="likes">

@@ -4,6 +4,7 @@ export const UserContext = createContext()
 
 const UserProvider = ({ children }) => {
 	const [user, setUser] = useState(null)
+	console.log(user)
 
 	useEffect(() => {
 		fetch('/api/persist/')

@@ -28,7 +28,6 @@ const Feed = ({ profileView }) => {
 				return res.json()
 			})
 			.then((data) => {
-				console.log(data.dbResponse)
 				if (data.status !== 200) setNoResultsStatus(true)
 				if (data.dbResponse.length === 0)
 					alert('No patches found, please adjust filter')
@@ -80,6 +79,7 @@ const Feed = ({ profileView }) => {
 							albumAvatar={patch.albumAvatar}
 							likes={patch.likes}
 							patchData={patch.patchData}
+							user={user}
 						/>
 					))
 				) : noResultsStatus ? (

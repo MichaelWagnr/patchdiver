@@ -52,6 +52,7 @@ const createUser = async (req, res) => {
 		email,
 		password,
 		avatarSrc: gravatarEndpoint,
+		likedPatches: [],
 		patchArray: [],
 	}
 
@@ -80,14 +81,12 @@ const createUser = async (req, res) => {
 			patchArray: userObject.patchArray,
 		}
 
-		return res
-			.status(200)
-			.json({
-				status: 200,
-				message: 'Success!',
-				dbResponse: newUser,
-				user: loggedInUser,
-			})
+		return res.status(200).json({
+			status: 200,
+			message: 'Success!',
+			dbResponse: newUser,
+			user: loggedInUser,
+		})
 	}
 	// Catch all
 	return res.status(500).json({ status: 500, message: 'Error occured' })

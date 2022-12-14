@@ -1,7 +1,6 @@
 const { accessDB } = require('../../utils/accessDB')
 
 const getAllPatches = async (req, res) => {
-	console.log(req.query)
 	const { profileView, userId } = req.query
 
 	// If viewing a profile return user's patches
