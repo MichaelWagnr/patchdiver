@@ -13,11 +13,7 @@ const ProfileCard = () => {
 					<img src={user.avatarSrc} alt={user.userName} className="avatar" />
 					<h2>{user.userName}</h2>
 					<div className="info">
-						<div>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, hic
-							nisi quis voluptas quibusdam pariatur debitis minima, accusantium,
-							labore placeat quo. Quasi numquam, velit voluptates quod beatae,
-						</div>
+						<div className="description"></div>
 						<p className="inspired">Inspired by:</p>
 						<div className="badges">
 							<div className="first-row">
@@ -87,6 +83,10 @@ const Card = styled.div`
 		bottom: 70px;
 		border-top: 1px solid var(--primary-fg);
 		padding-top: 10px;
+	}
+
+	.description {
+		height: 90px;
 	}
 
 	.inspired {

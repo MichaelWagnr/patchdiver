@@ -33,7 +33,7 @@ const Container = styled.div`
 	}
 
 	#video {
-		width: 100vw;
+		width: 100%;
 		z-index: -1;
 		position: absolute;
 		left: 0px;
