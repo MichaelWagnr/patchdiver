@@ -69,7 +69,7 @@ express()
 	.post('/api/patches/', authorize, createPatch)
 
 	// Additional endpoints
-	.get('/api/healthcheck', send200Status)
+	.get('/healthcheck', send200Status)
 
 	.get('*', (req, res) =>
 		res.status(404).json({ status: 404, message: 'Invalid endpoint' })
