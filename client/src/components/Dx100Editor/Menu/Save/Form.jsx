@@ -71,7 +71,6 @@ const Form = () => {
 				return res.json()
 			})
 			.then((data) => {
-				console.log(data)
 				if (data.imgSrc !== undefined) {
 					setFormData({ ...formData, albumAvatar: data.imgSrc })
 					return setFetchStatus(null)
