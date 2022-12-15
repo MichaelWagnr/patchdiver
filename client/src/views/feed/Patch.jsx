@@ -49,7 +49,11 @@ const Patch = ({
 		if (!user) return
 
 		setIsLiked(true)
-		fetch(`/api/patches/like/${_id}?userId=${user._id}`)
+		fetch(
+			`${import.meta.env.VITE_API_BASE}/api/patches/like/${_id}?userId=${
+				user._id
+			}`
+		)
 			.then((res) => {
 				return res.json()
 			})

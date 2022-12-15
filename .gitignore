@@ -9,10 +9,12 @@ lerna-debug.log*
 
 client/node_modules
 client/README.md
+client/.env*
 # client/public
 
 server/node_modules
 server/.env
+
 
 dist
 dist-ssr

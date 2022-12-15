@@ -62,7 +62,11 @@ const Form = () => {
 
 	const getAlbumArt = async (track, artist) => {
 		setFetchStatus('fetching')
-		fetch(`/api/artwork?track=${track}&artist=${artist}`)
+		fetch(
+			`${
+				import.meta.env.VITE_API_BASE
+			}/api/artwork?track=${track}&artist=${artist}`
+		)
 			.then((res) => {
 				if (res.status !== 200) {
 					setFormData({ ...formData, albumAvatar: '' })
@@ -98,7 +102,7 @@ const Form = () => {
 		e.preventDefault()
 		setIsSaving(true)
 
-		fetch('/api/patches/', {
+		fetch(`${import.meta.env.VITE_API_BASE}/api/patches/`, {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',

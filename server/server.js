@@ -42,6 +42,14 @@ express()
 	.use(hpp())
 	.use('/api', limiter)
 
+	.all('*', (req, res, next) => {
+		if (process.env.NODE_ENV === 'development')
+			res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+		if (process.env.NODE_ENV === 'production')
+			res.header('Access-Control-Allow-Origin', 'https://patchdiver.com')
+		next()
+	})
+
 	// .use((req, res, next) => {
 	// 	req.requestTime = new Date().toISOString()
 	// 	console.log(req.cookies)

@@ -12,7 +12,7 @@ const LogIn = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		fetch('/api/login/', {
+		fetch(`${import.meta.env.VITE_API_BASE}/api/login/`, {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',

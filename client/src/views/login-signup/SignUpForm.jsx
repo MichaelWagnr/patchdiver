@@ -12,7 +12,7 @@ const SignUp = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		fetch('/api/users/', {
+		fetch(`${import.meta.env.VITE_API_BASE}/api/users/`, {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',

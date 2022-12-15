@@ -17,7 +17,9 @@ const Feed = ({ profileView }) => {
 	const loadPatches = (filterData) => {
 		setNoResultsStatus(false)
 
-		const endpoint = `/api/patches?profileView=${profileView}&userId=${
+		const endpoint = `${
+			import.meta.env.VITE_API_BASE
+		}/api/patches?profileView=${profileView}&userId=${
 			user ? user._id : null
 		}&orderBy=${filterData?.orderBy ? filterData.orderBy : null}&genreTag=${
 			filterData?.genreTag ? filterData.genreTag : null

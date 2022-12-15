@@ -6,7 +6,7 @@ const UserProvider = ({ children }) => {
 	const [user, setUser] = useState(null)
 
 	useEffect(() => {
-		fetch('/api/persist/')
+		fetch(`${import.meta.env.VITE_API_BASE}/api/persist/`)
 			.then((res) => {
 				if (res.status !== 200) {
 					return setUser(null)
