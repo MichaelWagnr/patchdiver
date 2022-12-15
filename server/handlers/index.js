@@ -12,6 +12,7 @@ const { deletePatchById } = require('./patchHandlers/deletePatchById')
 const { createPatch } = require('./patchHandlers/createPatch')
 const { likePatchById } = require('./patchHandlers/likePatchById')
 const { getCurrentUser } = require('./userHandlers/getCurrentUser')
+const { send200Status } = require('./send200Status')
 
 module.exports = {
 	getAlbumArtMB,
@@ -28,4 +29,5 @@ module.exports = {
 	createPatch,
 	likePatchById,
 	getCurrentUser,
+	send200Status,
 }

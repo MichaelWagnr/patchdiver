@@ -72,14 +72,14 @@ const LandingPage = () => {
 const Container = styled.div`
 	display: grid;
 	height: 100vh;
-	width: 100vw;
+	min-width: 1440px;
 	gap: 100px;
 	grid-template-columns: 1fr 2fr;
 	place-content: center;
 	background-color: rgb(0, 0, 0, 0.4);
 
 	#video {
-		width: 100vw;
+		width: 1440px;
 		z-index: -1;
 		position: absolute;
 		left: 0px;

@@ -9,7 +9,6 @@ const Header = ({ theme, setTheme }) => {
 	const { user, setUser } = useContext(UserContext)
 	const navigate = useNavigate()
 	const location = useLocation()
-	console.log(location)
 
 	const handleLogOut = () => {
 		setUser(null)

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { TbTag } from 'react-icons/tb'
 import { BiLike } from 'react-icons/bi'
 import { parseVoice } from '../../components/Dx100Editor/Dx100.parseVoice'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PatchContext } from '../../contexts/PatchContext'
 import { UserContext } from '../../contexts/UserContext'
 
@@ -28,14 +28,16 @@ const Patch = ({
 }) => {
 	const { setVoice, setPatch } = useContext(PatchContext)
 
-	const [isLiked, setIsLiked] = useState(() => {
-		if (user) {
-			const isCurrentlyLiked = user.likedPatches.includes(_id)
-			return isCurrentlyLiked
-		} else {
-			return false
+	const [isLiked, setIsLiked] = useState(false)
+
+	//TODO user is initially undefined, likes are not persisted as a consequence
+	useEffect(() => {
+		if (user && user.likedPatches) {
+			const liked = user.likedPatches.includes(_id)
+			setIsLiked(liked)
 		}
-	})
+		return
+	}, [])
 
 	const handleVoiceLoad = () => {
 		setVoice(parseVoice(patchData))
@@ -49,12 +51,9 @@ const Patch = ({
 		setIsLiked(true)
 		fetch(`/api/patches/like/${_id}?userId=${user._id}`)
 			.then((res) => {
-				console.log(res)
 				return res.json()
 			})
-			.then((data) => {
-				console.log(data)
-			})
+			.then((data) => {})
 			.catch((err) => {
 				console.log(err)
 			})

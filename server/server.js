@@ -20,6 +20,7 @@ const {
 	createPatch,
 	getCurrentUser,
 	likePatchById,
+	send200Status,
 } = require('./handlers')
 const { authorize } = require('./utils/authorize')
 
@@ -66,6 +67,9 @@ express()
 	.get('/api/patches/like/:id', likePatchById)
 	.delete('/api/patches/:id', deletePatchById)
 	.post('/api/patches/', authorize, createPatch)
+
+	// Additional endpoints
+	.get('/api/healthcheck', send200Status)
 
 	.get('*', (req, res) =>
 		res.status(404).json({ status: 404, message: 'Invalid endpoint' })

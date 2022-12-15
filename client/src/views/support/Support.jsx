@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { SiBuymeacoffee, SiPatreon } from 'react-icons/si'
+import { SiBuymeacoffee, SiPatreon, SiPaypal } from 'react-icons/si'
 import { HiHeart } from 'react-icons/hi'
 
 function Support() {
@@ -26,6 +26,7 @@ function Support() {
 				className="link">
 				<SiPatreon className="icon" /> Become a Patron
 			</a>
+
 			<a
 				href="https://www.buymeacoffee.com/patchdiver"
 				target="_blank"
@@ -34,6 +35,13 @@ function Support() {
 				Make a single contribution
 			</a>
 
+			<a
+				href="https://paypal.me/patchdiver?country.x=CA&locale.x=en_US"
+				target="_blank"
+				className="link">
+				<SiPaypal className="icon" />
+				Make a contribution with Paypal
+			</a>
 			<p className="thank-you">
 				{/* <HiHeart className="heart" />  */}
 				Thank you <HiHeart className="heart" />
@@ -44,7 +52,7 @@ function Support() {
 
 const Container = styled.div`
 	width: 500px;
-	height: 500px;
+	height: 595px;
 	border: 1px solid var(--secondary-fg-light);
 	border-radius: 5px;
 	margin: 70px auto;
