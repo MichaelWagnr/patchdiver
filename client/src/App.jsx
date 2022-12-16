@@ -17,7 +17,7 @@ function App() {
 				<Route path="/profile/*" element={<Feed profileView={true} />} />
 				<Route path="/feed/*" element={<Feed profileView={false} />} />
 				<Route path="/support" element={<Support />} />
-				<Route path="*" element={<NotFound />} />
+				{/* <Route path="*" element={<NotFound />} /> */}
 			</Routes>
 		</div>
 	)
