@@ -14,9 +14,9 @@ const Form = () => {
 	const [isSaving, setIsSaving] = useState(false)
 	const [formData, setFormData] = useState({
 		created: '',
-		userName: user.userName,
-		userAvatar: user.avatarSrc,
-		userId: user._id,
+		userName: user?.userName,
+		userAvatar: user?.avatarSrc,
+		userId: user?._id,
 		manufacturer: 'Yamaha',
 		model: 'DX100',
 		patchName: '',
@@ -159,9 +159,9 @@ const Form = () => {
 				value={formData.model}
 				onChange={(e) => handleInputChange(e)}>
 				<option value="DX100">DX100</option>
-				<option value="DX21">DX21</option>
+				{/* <option value="DX21">DX21</option>
 				<option value="DX27">DX27</option>
-				<option value="TX81Z">TX81Z</option>
+				<option value="TX81Z">TX81Z</option> */}
 			</select>
 			<div className="info">Inspired by</div>
 			<label htmlFor="inspiredTrack">Track Name</label>
