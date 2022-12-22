@@ -9,6 +9,7 @@
 		"start": "nodemon -r dotenv/config server.js"
 	},
 	"dependencies": {
+		"@types/node": "^18.11.17",
 		"bcryptjs": "^2.4.3",
 		"blueimp-md5": "^2.19.0",
 		"cookie-parser": "^1.4.6",
