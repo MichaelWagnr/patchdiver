@@ -32,7 +32,7 @@ const OpParams = ({ operator }) => {
 				)
 			})}
 			{Object.keys(encoders).map((encoder) => {
-				const { cx, cy, fill, cx2, cy2, type } = encoders[encoder]
+				const { cx, cy, fill, cx2, cy2 } = encoders[encoder]
 				return (
 					<Encoder
 						key={encoder}
@@ -42,7 +42,6 @@ const OpParams = ({ operator }) => {
 						fill={fill}
 						cx2={cx2}
 						cy2={cy2}
-						type={type}
 					/>
 				)
 			})}

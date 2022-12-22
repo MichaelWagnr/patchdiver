@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 
 export const MidiContext = createContext(null)
 
@@ -15,7 +15,12 @@ const MidiProvider = ({ children }) => {
 
 		const onMIDISuccess = (midiAccess) => {
 			// { midiAccess, input, output, send()}
-			const midi = { midiAccess: midiAccess }
+			const midi = {
+				midiAccess: midiAccess,
+				input: null,
+				output: null,
+				send: null,
+			}
 			midiAccess.inputs.forEach((input) => (midi.input = input))
 			midiAccess.outputs.forEach((output) => (midi.output = output))
 			midi.send = function (message, timestamp = null) {

@@ -193,7 +193,7 @@ const Form = () => {
 			) : (
 				<div className="albumAvatar">
 					{fetchStatus === 'fetching' ? (
-						<EllipsisSpinner />
+						<EllipsisSpinner size="small" />
 					) : fetchStatus === '404' ? (
 						'N/A'
 					) : (
@@ -245,7 +245,7 @@ const Form = () => {
 				</div>
 			</Tags>
 			<button type="submit" disabled={isSaving ? true : false}>
-				{isSaving ? <EllipsisSpinner /> : 'Save Patch'}
+				{isSaving ? <EllipsisSpinner size="small" /> : 'Save Patch'}
 			</button>
 		</StyledForm>
 	)

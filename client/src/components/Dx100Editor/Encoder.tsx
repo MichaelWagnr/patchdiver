@@ -38,7 +38,7 @@ const Encoder = ({ id, cx, cy, fill, cx2, cy2 }) => {
 			let offsetY = (startY - e.clientY) * 2.5
 
 			// hold shiftKey to finetune
-			if (e.shiftKey && type !== 'switch') offsetY = offsetY / 8
+			if (e.shiftKey) offsetY = offsetY / 8
 
 			const currentParamPosition =
 				paramPosition + offsetY >= maxRange

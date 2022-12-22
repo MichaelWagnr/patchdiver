@@ -16,7 +16,8 @@ const LandingPage = () => {
 				poster="true"
 				id="video"
 				onPlay={(e) => {
-					e.target.playbackRate = 0.6
+					const target = e.target as HTMLVideoElement
+					target.playbackRate = 0.6
 				}}>
 				<source src="tinyocean.mp4" type="video/mp4" />
 			</video>
