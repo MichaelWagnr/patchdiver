@@ -48,21 +48,26 @@ express()
 			res.header({
 				'Access-Control-Allow-Origin': 'http://localhost:3000',
 				'Access-Control-Allow-Methods': 'GET, POST, OPTIONS,',
-				'Access-Control-Allow-Headers': 'Content-Type, Accept',
+				'Access-Control-Allow-Credentials': 'true',
+				'Access-Control-Allow-Headers':
+					'Origin, X-Requested-With, Content-Type, Accept',
 			})
 		if (process.env.NODE_ENV === 'production')
 			// res.header('Access-Control-Allow-Origin', 'https://www.patchdiver.com')
 			res.header({
 				'Access-Control-Allow-Origin': 'https://www.patchdiver.com',
 				'Access-Control-Allow-Methods': 'GET, POST, OPTIONS,',
-				'Access-Control-Allow-Headers': 'Content-Type, Accept',
+				'Access-Control-Allow-Credentials': 'true',
+				'Access-Control-Allow-Headers':
+					'Origin, X-Requested-With, Content-Type, Accept',
 			})
 		next()
 	})
 
 	// .use((req, res, next) => {
 	// 	req.requestTime = new Date().toISOString()
-	// 	console.log(req.cookies)
+	// 	console.log('req', req.cookies)
+	// 	console.log('⬅', res.cookies)
 	// 	next()
 	// })
 

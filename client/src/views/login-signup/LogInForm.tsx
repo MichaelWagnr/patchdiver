@@ -17,6 +17,7 @@ const LogIn = () => {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
 			},
+			credentials: 'include',
 			method: 'POST',
 			body: JSON.stringify(logInData),
 		})

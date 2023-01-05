@@ -12,7 +12,9 @@ const Header = ({ theme, setTheme }) => {
 
 	const handleLogOut = () => {
 		setUser(null)
-		fetch(`${import.meta.env.VITE_API_BASE}/api/logout/`)
+		fetch(`${import.meta.env.VITE_API_BASE}/api/logout/`, {
+			credentials: 'include',
+		})
 			.then((res) => res.json())
 			.catch((err) => console.log(err))
 	}

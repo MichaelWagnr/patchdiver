@@ -70,7 +70,7 @@ const createUser = async (req, res) => {
 				Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
 			),
 			// TODO set secure to true, once in production
-			secure: process.env.NODE_ENV === 'production' ? true : null,
+			secure: process.env.NODE_ENV === 'production' ? true : false,
 			httpOnly: true,
 		})
 
