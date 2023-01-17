@@ -8,10 +8,10 @@ const DisplayValues = () => {
 	} = useContext<{ currentChanges: [string, number | string] }>(PatchContext)
 
 	if (paramName === 'ALGORITHM') paramVal = +paramVal + 1
+
 	if (paramName === 'OSCILLATOR FREQUENCY') paramVal = freqRatios[paramVal]
 
 	const lfoValues = ['SAWTOOTH', 'SQUARE', 'TRIANGLE', 'SAMPLE/HOLD']
-
 	if (paramName === 'LFO WAVE') paramVal = lfoValues[paramVal]
 
 	const switches = [
@@ -21,8 +21,8 @@ const DisplayValues = () => {
 		'SUSTAIN FOOTSWITCH',
 		'LFO SYNC',
 	]
-
 	if (switches.includes(paramName)) paramVal = ['OFF', 'ON'][paramVal]
+
 	if (paramName === 'POLY | MONO') paramVal = ['POLY', 'MONO'][paramVal]
 
 	const textOpacity = 0.7
