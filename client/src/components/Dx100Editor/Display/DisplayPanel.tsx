@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
 import { PatchContext } from '../../../contexts/PatchContext'
+import { DX100Patch } from '../../../types'
 import Algorithm1 from './Algorithms/Algorithm1'
 import Algorithm2 from './Algorithms/Algorithm2'
 import Algorithm3 from './Algorithms/Algorithm3'
@@ -12,9 +13,9 @@ import Algorithm7 from './Algorithms/Algorithm7'
 import Algorithm8 from './Algorithms/Algorithm8'
 
 const DisplayPanel = () => {
-	const { patch } = useContext(PatchContext)
+	const { patch } = useContext<{ patch: DX100Patch }>(PatchContext)
 
-	const [num, setNum] = useState(null)
+	const [num, setNum] = useState<number | null>(null)
 
 	useEffect(() => {
 		if (patch) setNum(patch?.alg?.value)
