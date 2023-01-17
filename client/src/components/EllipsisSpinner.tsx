@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-const EllipsisSpinner = ({ size }) => {
+type Props = {
+	size?: string
+}
+
+const EllipsisSpinner: React.FC<Props> = ({ size }) => {
 	return (
 		<Spinner size={size}>
 			<div className="lds-ellipsis">
@@ -13,7 +17,7 @@ const EllipsisSpinner = ({ size }) => {
 	)
 }
 
-const Spinner = styled.div`
+const Spinner = styled.div<{ size: string }>`
 	width: 100%;
 	height: 100%;
 
