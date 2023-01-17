@@ -1,6 +1,4 @@
-import { useContext } from 'react'
 import styled from 'styled-components'
-import { PatchContext } from '../../../contexts/PatchContext'
 import DisplayPanel from './DisplayPanel'
 import DisplayValues from './DisplayValues'
 
@@ -24,8 +22,3 @@ const Section = styled.div`
 `
 
 export default DisplaySection
-
-/**********************************************************
-  
-
-**********************************************************/
