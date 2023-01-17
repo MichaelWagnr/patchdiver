@@ -14,7 +14,6 @@ const DisplayValues = () => {
 
 	if (paramName === 'LFO WAVE') paramVal = lfoValues[paramVal]
 
-	const binarySwitch = ['OFF', 'ON']
 	const switches = [
 		'AMP MODULATION ENABLE',
 		'PORTAMENTO',
@@ -23,10 +22,8 @@ const DisplayValues = () => {
 		'LFO SYNC',
 	]
 
-	if (switches.includes(paramName)) paramVal = binarySwitch[paramVal]
-
-	const monoPoly = ['POLY', 'MONO']
-	if (paramName === 'POLY | MONO') paramVal = monoPoly[paramVal]
+	if (switches.includes(paramName)) paramVal = ['OFF', 'ON'][paramVal]
+	if (paramName === 'POLY | MONO') paramVal = ['POLY', 'MONO'][paramVal]
 
 	const textOpacity = 0.7
 
