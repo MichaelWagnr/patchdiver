@@ -1,4 +1,10 @@
-const Algorithm4 = ({ isActive, highlighted, transparent }) => {
+import { DX100AlgoDisplayProps } from '../../../../types'
+
+const Algorithm4 = ({
+	isActive,
+	highlighted,
+	transparent,
+}: DX100AlgoDisplayProps) => {
 	return (
 		<g>
 			<path
