@@ -1,7 +1,11 @@
 import MenuView from '../Menu.style'
 import styled from 'styled-components'
 
-const Theme = ({ setTheme }) => {
+type Props = {
+	setTheme: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Theme = ({ setTheme }: Props) => {
 	return (
 		<MenuView>
 			<ThemeMenu>
