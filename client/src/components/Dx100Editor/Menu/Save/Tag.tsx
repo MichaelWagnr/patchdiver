@@ -1,7 +1,15 @@
 import styled from 'styled-components'
 import { TbTag } from 'react-icons/tb'
+import React from 'react'
 
-const Tag = ({ name, type, handleInputChange, isSelected }) => {
+type Props = {
+	name: string
+	type: string
+	isSelected?: boolean
+	handleInputChange: (e: React.MouseEvent) => void
+}
+
+const Tag = ({ name, type, handleInputChange, isSelected }: Props) => {
 	return (
 		<StyledTag
 			data-type={type}
