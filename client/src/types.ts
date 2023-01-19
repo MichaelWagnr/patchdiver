@@ -5,6 +5,20 @@ export type midiObject = {
 	send: (message: [], timestamp: null | number) => void
 }
 
+export type user = {
+	_id: string
+	userName: string
+	avatarSrc: string
+	likedPatches: string[]
+	patchArray: []
+}
+
+export type serverResponse = {
+	status: number
+	message: string
+	[key: string]: unknown
+}
+
 export type DX100AlgoDisplayProps = {
 	isActive: boolean
 	highlighted: string

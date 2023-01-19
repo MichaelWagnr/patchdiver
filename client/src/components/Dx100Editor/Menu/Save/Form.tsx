@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Tag from './Tag'
 import { genreTags, patchTags } from './Form.tags'
@@ -6,11 +6,12 @@ import { PatchContext } from '../../../../contexts/PatchContext'
 import EllipsisSpinner from '../../../EllipsisSpinner'
 import { UserContext } from '../../../../contexts/UserContext'
 import { compileVoice } from '../../Dx100.parseVoice'
+import { DX100Patch, serverResponse, user } from '../../../../types'
 
 const Form = () => {
-	const { voice } = useContext(PatchContext)
-	const { user } = useContext(UserContext)
-	const [fetchStatus, setFetchStatus] = useState(null)
+	const { voice } = useContext<{ voice: DX100Patch }>(PatchContext)
+	const { user } = useContext<{ user: user }>(UserContext)
+	const [fetchStatus, setFetchStatus] = useState<string | null>(null)
 	const [isSaving, setIsSaving] = useState(false)
 	const [formData, setFormData] = useState({
 		created: '',
@@ -50,7 +51,8 @@ const Form = () => {
 		}
 	}, [voice])
 
-	const handleInputChange = (e) => {
+	//TODO split up into two seperate functions, one to handle input changes, one to handle tag changes for better typing and cleaner code.
+	const handleInputChange = (e: any) => {
 		const i = e.target
 		const { type, value } = e.target.dataset
 		if (type && value) {
@@ -60,7 +62,7 @@ const Form = () => {
 		}
 	}
 
-	const getAlbumArt = async (track, artist) => {
+	const getAlbumArt = async (track: string, artist: string): Promise<void> => {
 		setFetchStatus('fetching')
 		fetch(
 			`${
@@ -74,7 +76,7 @@ const Form = () => {
 				}
 				return res.json()
 			})
-			.then((data) => {
+			.then((data: { imgSrc?: string }) => {
 				if (data.imgSrc !== undefined) {
 					setFormData({ ...formData, albumAvatar: data.imgSrc })
 					return setFetchStatus(null)
@@ -83,7 +85,7 @@ const Form = () => {
 					return setFetchStatus('404')
 				}
 			})
-			.catch((err) => console.log(err))
+			.catch((err: Error) => console.log(err))
 	}
 
 	const handleBlur = () => {
@@ -98,7 +100,7 @@ const Form = () => {
 		}
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 		setIsSaving(true)
 
@@ -114,14 +116,14 @@ const Form = () => {
 				console.log(res)
 				return res.json()
 			})
-			.then((data) => {
+			.then((data: serverResponse) => {
 				setIsSaving(false)
 				// if (data.status === 401) return alert(data.message)
 				if (data.status !== 200) return alert(data.message)
 				alert('Patch successfully saved to your profile!')
 				console.log(data)
 			})
-			.catch((err) => {
+			.catch((err: Error) => {
 				console.log(err)
 			})
 	}
