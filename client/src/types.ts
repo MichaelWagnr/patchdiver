@@ -1,3 +1,10 @@
+export type midiObject = {
+	midiAccess: WebMidi.MIDIAccess
+	input: WebMidi.MIDIInput
+	output: WebMidi.MIDIOutput
+	send: (message: [], timestamp: null | number) => void
+}
+
 export type DX100AlgoDisplayProps = {
 	isActive: boolean
 	highlighted: string
@@ -381,11 +388,4 @@ export type DX100Patch = {
 		param: number
 		value: number
 	}
-}
-
-export type midiObject = {
-	midiAccess: WebMidi.MIDIAccess
-	input: WebMidi.MIDIInput
-	output: WebMidi.MIDIOutput
-	send: (message: [], timestamp: null | number) => void
 }
