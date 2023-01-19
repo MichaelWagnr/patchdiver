@@ -1,28 +1,28 @@
 import styled from 'styled-components'
 import { Routes, Route, NavLink } from 'react-router-dom'
-import Main from './Main/Main'
 import Save from './Save/Save'
 import Theme from './Theme/Theme'
-import About from './About/About'
 import Load from './Load/Load'
 
-const Menu = ({ menuIsActive, setTheme }) => {
+type Props = {
+	menuIsActive: boolean
+	setTheme: React.Dispatch<React.SetStateAction<string>>
+}
+
+//TODO replace nested routes with state pointing to which sub-menu is selected and conditional rendering for each corresponding element. (subMenu === 'Load' && <Load />)
+const Menu = ({ menuIsActive, setTheme }: Props) => {
 	return (
 		<>
 			<Navigation className={menuIsActive ? 'active' : null}>
-				{/* <Option to="menu/main">Main</Option> */}
 				<Option to="menu/Load">Load</Option>
 				<Option to="menu/save">Save</Option>
 				<Option to="menu/theme">Theme</Option>
-				{/* <Option to="menu/about">About</Option> */}
 			</Navigation>
 			<MenuSection className={menuIsActive ? 'active' : null}>
 				<Routes>
-					<Route path="menu/main" element={<Main />} />
 					<Route path="menu/load" element={<Load />} />
 					<Route path="menu/save" element={<Save />} />
 					<Route path="menu/theme" element={<Theme setTheme={setTheme} />} />
-					<Route path="menu/about" element={<About />} />
 				</Routes>
 			</MenuSection>
 		</>
@@ -50,11 +50,6 @@ const Navigation = styled(Overlay)`
 	height: 657px;
 	width: 262px;
 
-	/* bottom-left */
-	/* top: 660px;
-	left: -262px; */
-
-	/* left-to-right */
 	top: 0px;
 	left: -262px;
 
@@ -64,7 +59,6 @@ const Navigation = styled(Overlay)`
 	display: flex;
 	flex-direction: column;
 	padding: 30px 0px;
-	/* justify-content: center; */
 
 	&.active {
 		top: 0px;
@@ -73,38 +67,8 @@ const Navigation = styled(Overlay)`
 `
 
 const MenuSection = styled(Overlay)`
-	/* top-right */
-	/* top: -660px;
-	left: 1336px; */
-
-	/* bottom-right */
 	top: 662px;
 	left: 1336px;
-
-	/* top-left */
-	/* top: -680px;
-	left: -1354px; */
-
-	/* bottom-left */
-	/* top: 680px;
-	left: -1354px; */
-
-	/* bottom-to-top */
-	/* top: 680px;
-	left: 264px; */
-
-	/* top-to-bottom */
-	/* top: -680px;
-	left: 264px; */
-
-	/* left-to-right */
-	/* top: 2px;
-	left: -1354px; */
-
-	/* right-to-left */
-	/* top: 2px;
-	left: 1354px; */
-
 	height: 657px;
 	width: 1068px;
 	z-index: 8;
@@ -120,7 +84,6 @@ const Option = styled(NavLink)`
 	font-size: 1.5rem;
 	display: block;
 	color: var(--primary-fg);
-	/* text-align: center; */
 	padding: 20px;
 
 	&:hover {
@@ -130,11 +93,9 @@ const Option = styled(NavLink)`
 
 	&.active {
 		color: var(--primary-fg-light);
-		/* text-decoration: underline; */
 	}
 
 	&.active::after {
-		/* content: '⁂  '; */
 		content: '⁘';
 		margin-left: 6px;
 		font-weight: bold;
