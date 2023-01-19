@@ -1,28 +1,34 @@
-import { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { MidiContext } from '../../../../contexts/MidiContext'
 import MenuView from '../Menu.style'
 import styled from 'styled-components'
 import { PatchContext } from '../../../../contexts/PatchContext'
 import { init, parseVoice } from '../../Dx100.parseVoice'
+import { DX100Patch, midiObject } from '../../../../types'
 
 const Load = () => {
-	const { midi } = useContext(MidiContext)
-	const { setVoice, setPatch } = useContext(PatchContext)
+	const { midi } = useContext<{ midi: midiObject }>(MidiContext)
+	const { setVoice, setPatch } = useContext<{
+		setVoice: React.Dispatch<React.SetStateAction<DX100Patch | {}>>
+		setPatch: React.Dispatch<React.SetStateAction<DX100Patch | {}>>
+	}>(PatchContext)
 
-	const [queuedPatch, setQueuedPatch] = useState(null)
+	const [queuedPatch, setQueuedPatch] = useState<null | Uint8Array>(null)
 
 	if (midi) {
-		midi.input.onmidimessage = (e) => {
+		midi.input.onmidimessage = (e: WebMidi.MIDIMessageEvent) => {
 			if (e.data.length === 101) setQueuedPatch(e.data)
 		}
 	}
 
 	const handleVoiceLoad = () => {
+		if (!queuedPatch) return
 		setVoice(parseVoice(queuedPatch))
 		setPatch(parseVoice(queuedPatch))
 	}
 
 	const handleInitLoad = () => {
+		if (!queuedPatch) return
 		setVoice(parseVoice(init))
 		setPatch(parseVoice(init))
 	}

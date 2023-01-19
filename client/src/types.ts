@@ -382,3 +382,10 @@ export type DX100Patch = {
 		value: number
 	}
 }
+
+export type midiObject = {
+	midiAccess: WebMidi.MIDIAccess
+	input: WebMidi.MIDIInput
+	output: WebMidi.MIDIOutput
+	send: (message: [], timestamp: null | number) => void
+}
