@@ -1,4 +1,23 @@
-export const getOperatorParamSliders = (operator) => {
+export type sliderSVGValues = {
+	x: string
+	y: string
+	fill: string
+	x2: string
+	y2: string
+	type?: string
+}
+
+export type encoderSVGValues = {
+	cx: string
+	cy: string
+	fill: string
+	cx2: string
+	cy2: string
+}
+
+export const getOperatorParamSliders = (
+	operator: string
+): { [key: string]: sliderSVGValues } => {
 	const sliders = {
 		[`${operator}_det`]: {
 			x: '110',
@@ -68,7 +87,9 @@ export const getOperatorParamSliders = (operator) => {
 	return sliders
 }
 
-export const getOperatorParamEncoders = (operator) => {
+export const getOperatorParamEncoders = (
+	operator: string
+): { [key: string]: encoderSVGValues } => {
 	const encoders = {
 		[`${operator}_egb`]: {
 			cx: '220',
@@ -102,7 +123,7 @@ export const getOperatorParamEncoders = (operator) => {
 	return encoders
 }
 
-export const getLfoParamSliders = () => {
+export const getLfoParamSliders = (): { [key: string]: sliderSVGValues } => {
 	const sliders = {
 		ams: {
 			x: '190',

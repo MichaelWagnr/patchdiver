@@ -5,7 +5,11 @@ import {
 import Encoder from '../Encoder'
 import Slider from '../Slider'
 
-const OpParams = ({ operator }) => {
+type Props = {
+	operator: string
+}
+
+const OpParams = ({ operator }: Props) => {
 	const sliders = getOperatorParamSliders(operator)
 	const encoders = getOperatorParamEncoders(operator)
 
