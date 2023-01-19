@@ -37,14 +37,12 @@ const Save = () => {
 }
 
 const SaveMenu = styled.div`
-	/* width: 550px; */
 	display: grid;
 	grid-template-columns: 550px 2px 1fr;
 	gap: 20px;
 
 	.border-left {
 		width: 1px;
-		/* height: 255px; */
 		height: 100%;
 		background: var(--secondary-fg-light);
 	}
