@@ -5,8 +5,8 @@ import { genreTags, patchTags } from './Form.tags'
 import { PatchContext } from '../../../../contexts/PatchContext'
 import EllipsisSpinner from '../../../EllipsisSpinner'
 import { UserContext } from '../../../../contexts/UserContext'
-import { compileVoice } from '../../Dx100.parseVoice'
 import { DX100Patch, serverResponse, user } from '../../../../types'
+import compileVoice from '../../Dx100.compileVoice'
 
 const Form = () => {
 	const { voice } = useContext<{ voice: DX100Patch }>(PatchContext)
