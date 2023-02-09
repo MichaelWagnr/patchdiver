@@ -4,7 +4,7 @@ import MenuView from '../Menu.style'
 import styled from 'styled-components'
 import { PatchContext } from '../../../../contexts/PatchContext'
 import { parseVoice } from '../../Dx100.parseVoice'
-import { DX100Patch, midiObject } from '../../../../types'
+import { DX100Patch, DX100SysexArr, midiObject } from '../../../../types'
 import init from '../../Dx100.initialPatch'
 
 const Load = () => {
@@ -14,11 +14,12 @@ const Load = () => {
 		setPatch: React.Dispatch<React.SetStateAction<DX100Patch | {}>>
 	}>(PatchContext)
 
-	const [queuedPatch, setQueuedPatch] = useState<null | Uint8Array>(null)
+	const [queuedPatch, setQueuedPatch] = useState<null | DX100SysexArr>(null)
 
 	if (midi) {
 		midi.input.onmidimessage = (e: WebMidi.MIDIMessageEvent) => {
-			if (e.data.length === 101) setQueuedPatch(e.data)
+			if (e.data.length === 101)
+				setQueuedPatch(e.data as unknown as DX100SysexArr)
 		}
 	}
 

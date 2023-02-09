@@ -1,7 +1,7 @@
-import { DX100Patch } from '../../types'
+import { DX100Patch, DX100SysexArr } from '../../types'
 import { dx100Parameters } from './Dx100.paramData'
 
-export const parseVoice = (sysexArr: number[]): DX100Patch | {} => {
+export const parseVoice = (sysexArr: DX100SysexArr): DX100Patch | {} => {
 	const newArr = sysexArr.slice(6, -1)
 	const keys = Object.keys(dx100Parameters)
 	const voice: { [key: string]: { param: number; value: number } } = {}
