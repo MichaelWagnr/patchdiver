@@ -4,7 +4,7 @@ import { MidiContext } from '../../contexts/MidiContext'
 import { PatchContext } from '../../contexts/PatchContext'
 import DisplaySection from './Display/DisplaySection'
 import init from './Dx100.initialPatch'
-import { parseVoice } from './Dx100.parseVoice'
+import parseVoice from './Dx100.parseVoice'
 
 import LfoSection from './LfoSection/LfoSection'
 import Menu from './Menu/Menu'

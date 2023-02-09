@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { TbTag } from 'react-icons/tb'
 import { BiLike } from 'react-icons/bi'
-import { parseVoice } from '../../components/Dx100Editor/Dx100.parseVoice'
 import { useContext, useEffect, useState } from 'react'
 import { PatchContext } from '../../contexts/PatchContext'
 import { UserContext } from '../../contexts/UserContext'
+import parseVoice from '../../components/Dx100Editor/Dx100.parseVoice'
 
 const Patch = ({
 	setEditorIsActive,
