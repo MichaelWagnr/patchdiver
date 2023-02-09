@@ -1,3 +1,4 @@
+import { DX100Patch } from '../../types'
 import { dx100Parameters } from './Dx100.paramData'
 
 export const init = [
@@ -8,10 +9,10 @@ export const init = [
 	69, 99, 99, 99, 50, 50, 50, 2, 247,
 ]
 
-export const parseVoice = (sysexArr) => {
+export const parseVoice = (sysexArr: number[]): DX100Patch | {} => {
 	const newArr = sysexArr.slice(6, -1)
 	const keys = Object.keys(dx100Parameters)
-	const voice = {}
+	const voice: { [key: string]: { param: number; value: number } } = {}
 	keys.forEach((key, index) => {
 		voice[key] = {
 			param: dx100Parameters[key].param,
@@ -21,8 +22,10 @@ export const parseVoice = (sysexArr) => {
 	return voice
 }
 
-export const compileVoice = (voiceObj) => {
-	const calculateChecksum = (arr) => {
+export const compileVoice = (voiceObj: DX100Patch): number[] => {
+	console.log('voiceObj', voiceObj)
+
+	const calculateChecksum = (arr: number[]): number => {
 		let sum = 0
 		arr.forEach((val) => (sum += val))
 		const checksum = 128 - (sum % 128)
