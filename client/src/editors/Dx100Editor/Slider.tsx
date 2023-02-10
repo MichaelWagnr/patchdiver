@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 import { MidiContext } from '../../contexts/MidiContext'
 import { PatchContext } from '../../contexts/PatchContext'
-import { dx100Parameters } from './Dx100.paramData'
-import sysexMessage from './Dx100.sysexMessage'
+import { dx100Parameters } from './utilities/Dx100.paramData'
+import sysexMessage from './utilities/Dx100.sysexMessage'
 
 const Slider = ({ id, x, y, fill, x2, y2, type }) => {
 	const { handlePatchChange, voice } = useContext(PatchContext)

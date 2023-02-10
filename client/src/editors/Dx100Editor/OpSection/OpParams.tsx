@@ -1,7 +1,7 @@
 import {
 	getOperatorParamEncoders,
 	getOperatorParamSliders,
-} from '../Dx100.uiData'
+} from '../utilities/Dx100.uiData'
 import Encoder from '../Encoder'
 import Slider from '../Slider'
 

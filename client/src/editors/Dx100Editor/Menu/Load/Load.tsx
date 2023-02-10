@@ -4,8 +4,8 @@ import MenuView from '../Menu.style'
 import styled from 'styled-components'
 import { PatchContext } from '../../../../contexts/PatchContext'
 import { DX100Patch, DX100SysexArr, midiObject } from '../../../../types'
-import init from '../../Dx100.initialPatch'
-import parseVoice from '../../Dx100.parseVoice'
+import parseVoice from '../../utilities/Dx100.parseVoice'
+import init from '../../utilities/Dx100.initialPatch'
 
 const Load = () => {
 	const { midi } = useContext<{ midi: midiObject }>(MidiContext)

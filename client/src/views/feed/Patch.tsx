@@ -4,7 +4,7 @@ import { BiLike } from 'react-icons/bi'
 import { useContext, useEffect, useState } from 'react'
 import { PatchContext } from '../../contexts/PatchContext'
 import { UserContext } from '../../contexts/UserContext'
-import parseVoice from '../../components/Dx100Editor/Dx100.parseVoice'
+import parseVoice from '../../editors/Dx100Editor/utilities/Dx100.parseVoice'
 
 const Patch = ({
 	setEditorIsActive,

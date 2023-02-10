@@ -5,7 +5,7 @@ import { SiMidi } from 'react-icons/si'
 import { MdPiano } from 'react-icons/md'
 import { PatchContext } from '../../contexts/PatchContext'
 import MidiKeys from './MidiKeys'
-import compileVoice from './Dx100.compileVoice'
+import compileVoice from './utilities/Dx100.compileVoice'
 
 const StatusBar = ({ editorIsActive, menuIsActive, setMenuIsActive }) => {
 	const { midi, requestMidi } = useContext(MidiContext)

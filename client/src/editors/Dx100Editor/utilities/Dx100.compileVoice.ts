@@ -1,4 +1,4 @@
-import { DX100Patch } from '../../types'
+import { DX100Patch } from '../../../types'
 
 const compileVoice = (voiceObj: DX100Patch): number[] => {
 	const values = getArrOfValues(voiceObj)

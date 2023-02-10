@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import { MidiContext } from '../../contexts/MidiContext'
 import { PatchContext } from '../../contexts/PatchContext'
 import DisplaySection from './Display/DisplaySection'
-import init from './Dx100.initialPatch'
-import parseVoice from './Dx100.parseVoice'
 
 import LfoSection from './LfoSection/LfoSection'
 import Menu from './Menu/Menu'
 import OpSection from './OpSection/OpSection'
 import StatusBar from './StatusBar'
+import init from './utilities/Dx100.initialPatch'
+import parseVoice from './utilities/Dx100.parseVoice'
 
 const Editor = ({ editorIsActive }) => {
 	const { setVoice, setPatch } = useContext(PatchContext)

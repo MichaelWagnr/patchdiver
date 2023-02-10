@@ -1,4 +1,4 @@
-import { getLfoParamSliders } from '../Dx100.uiData'
+import { getLfoParamSliders } from '../utilities/Dx100.uiData'
 import Slider from '../Slider'
 
 type sliderSVGValues = {

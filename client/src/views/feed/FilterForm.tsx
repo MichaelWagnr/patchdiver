@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import { IoIosColorFilter } from 'react-icons/io'
 import { useState } from 'react'
-import Tag from '../../components/Dx100Editor/Menu/Save/Tag'
+import Tag from '../../editors/Dx100Editor/Menu/Save/Tag'
 import {
 	genreTags,
 	patchTags,
-} from '../../components/Dx100Editor/Menu/Save/Form.tags'
+} from '../../editors/Dx100Editor/Menu/Save/Form.tags'
 
 const FilterForm = ({ loadPatches }) => {
 	const [filterIsActive, setFilterIsActive] = useState(false)

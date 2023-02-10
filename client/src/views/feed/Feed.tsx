@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Editor from '../../components/Dx100Editor/Editor'
+import Editor from '../../editors/Dx100Editor/Editor'
 import EllipsisSpinner from '../../components/EllipsisSpinner'
 import Spacer from '../../components/Spacer'
 import { UserContext } from '../../contexts/UserContext'

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { PatchContext } from '../../../contexts/PatchContext'
-import freqRatios from '../Dx100.freqRatios'
+import freqRatios from '../utilities/Dx100.freqRatios'
 
 const DisplayValues = () => {
 	let {
