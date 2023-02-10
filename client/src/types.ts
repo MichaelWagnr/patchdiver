@@ -2,7 +2,7 @@ export type midiObject = {
 	midiAccess: WebMidi.MIDIAccess
 	input: WebMidi.MIDIInput
 	output: WebMidi.MIDIOutput
-	send: (message: [], timestamp: null | number) => void
+	send: (message: number[], timestamp?: null | number) => void
 }
 
 export type user = {
