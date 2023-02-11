@@ -1,5 +1,6 @@
 import { ReactNode, useState } from 'react'
 import { createContext } from 'react'
+import { DX100Patch } from '../types'
 
 export const PatchContext = createContext(null)
 
@@ -8,7 +9,9 @@ const PatchProvider = ({ children }: { children: ReactNode }) => {
 	const [patch, setPatch] = useState(null)
 	// Voices are either initial or from preset
 	const [voice, setVoice] = useState(null)
-	const [currentChanges, setCurrentChanges] = useState([null, null])
+	const [currentChanges, setCurrentChanges] = useState<
+		[string, number] | null[]
+	>([null, null])
 
 	const handlePatchChange = (id: string, name: string, val: number): void => {
 		console.log(id, name, val)
