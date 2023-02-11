@@ -1,8 +1,8 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 export const UserContext = createContext(null)
 
-const UserProvider = ({ children }) => {
+const UserProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState(null)
 
 	useEffect(() => {
@@ -10,14 +10,12 @@ const UserProvider = ({ children }) => {
 			credentials: 'include',
 		})
 			.then((res) => {
-				console.log(res)
 				if (res.status !== 200) {
 					return setUser(null)
 				}
 				return res.json()
 			})
 			.then((data) => {
-				console.log(data)
 				setUser(data.user)
 			})
 			.catch((err) => console.log(err))
