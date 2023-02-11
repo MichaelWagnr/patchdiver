@@ -1,4 +1,4 @@
-import { DX100SysexArr } from '../../types'
+import { DX100SysexArr } from '../../../types'
 
 const init: DX100SysexArr = [
 	240, 67, 0, 3, 0, 93, 31, 31, 0, 15, 15, 0, 0, 0, 0, 0, 0, 4, 3, 31, 31, 0,

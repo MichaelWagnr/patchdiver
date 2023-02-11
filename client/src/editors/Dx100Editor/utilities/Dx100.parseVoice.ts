@@ -1,4 +1,4 @@
-import { DX100Patch, DX100SysexArr } from '../../types'
+import { DX100Patch, DX100SysexArr } from '../../../types'
 import { dx100Parameters } from './Dx100.paramData'
 
 const parseVoice = (sysexArr: DX100SysexArr): DX100Patch | {} => {
@@ -18,7 +18,7 @@ function createPatchObject(paramsArr: number[]) {
 
 	keys.forEach((key, index) => {
 		patchObject[key] = {
-			param: dx100Parameters[key].param,
+			param: dx100Parameters[key as keyof typeof dx100Parameters].param,
 			value: paramsArr[index],
 		}
 	})
