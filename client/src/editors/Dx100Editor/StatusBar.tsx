@@ -7,7 +7,17 @@ import { PatchContext } from '../../contexts/PatchContext'
 import MidiKeys from './MidiKeys'
 import compileVoice from './utilities/Dx100.compileVoice'
 
-const StatusBar = ({ editorIsActive, menuIsActive, setMenuIsActive }) => {
+type Props = {
+	editorIsActive: boolean
+	menuIsActive: boolean
+	setMenuIsActive: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const StatusBar = ({
+	editorIsActive,
+	menuIsActive,
+	setMenuIsActive,
+}: Props) => {
 	const { midi, requestMidi } = useContext(MidiContext)
 	const { patch } = useContext(PatchContext)
 
@@ -30,9 +40,7 @@ const StatusBar = ({ editorIsActive, menuIsActive, setMenuIsActive }) => {
 
 			<div>
 				{!midi || midi.output.state === 'disconnected' ? (
-					<button
-						onClick={() => requestMidi({ logInput: true })}
-						className="connect">
+					<button onClick={() => requestMidi()} className="connect">
 						<MdPiano />
 						<SiMidi className="midi-icon" />
 					</button>
