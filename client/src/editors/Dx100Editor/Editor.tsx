@@ -11,17 +11,18 @@ import StatusBar from './StatusBar'
 import init from './utilities/Dx100.initialPatch'
 import parseVoice from './utilities/Dx100.parseVoice'
 
-const Editor = ({ editorIsActive }) => {
+type Props = {
+	editorIsActive: boolean
+}
+
+const Editor = ({ editorIsActive }: Props) => {
 	const { setVoice, setPatch } = useContext(PatchContext)
 	const [menuIsActive, setMenuIsActive] = useState(false)
 	const [theme, setTheme] = useState('default')
 
-	const patch = null // ... for now
-
 	useEffect(() => {
-		const voice = patch || init
-		setVoice(parseVoice(voice))
-		setPatch(parseVoice(voice))
+		setVoice(parseVoice(init))
+		setPatch(parseVoice(init))
 	}, [])
 
 	const operators = [1, 2, 3, 4]
