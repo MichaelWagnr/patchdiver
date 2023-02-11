@@ -4,7 +4,17 @@ import { PatchContext } from '../../contexts/PatchContext'
 import { dx100Parameters } from './utilities/Dx100.paramData'
 import sysexMessage from './utilities/Dx100.sysexMessage'
 
-const Slider = ({ id, x, y, fill, x2, y2, type }) => {
+type Props = {
+	id: string
+	x: string
+	y: string
+	fill: string
+	x2: string
+	y2: string
+	type: string
+}
+
+const Slider = ({ id, x, y, fill, x2, y2, type }: Props) => {
 	const { handlePatchChange, voice } = useContext(PatchContext)
 
 	const { midi } = useContext(MidiContext)
@@ -29,11 +39,11 @@ const Slider = ({ id, x, y, fill, x2, y2, type }) => {
 		}
 	}, [voice])
 
-	const handleMouse = (e) => {
+	const handleMouse = (e: React.MouseEvent) => {
 		document.body.style.cursor = 'grabbing'
 		const startY = e.clientY
 
-		const handleMove = (e) => {
+		const handleMove = (e: MouseEvent) => {
 			const maxRange = type === 'switch' ? 20 : 101
 			let offsetY =
 				type === 'switch'

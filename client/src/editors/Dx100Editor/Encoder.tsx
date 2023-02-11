@@ -4,7 +4,16 @@ import { PatchContext } from '../../contexts/PatchContext'
 import { dx100Parameters } from './utilities/Dx100.paramData'
 import sysexMessage from './utilities/Dx100.sysexMessage'
 
-const Encoder = ({ id, cx, cy, fill, cx2, cy2 }) => {
+type Props = {
+	id: string
+	cx: string
+	cy: string
+	fill: string
+	cx2: string
+	cy2: string
+}
+
+const Encoder = ({ id, cx, cy, fill, cx2, cy2 }: Props) => {
 	const { handlePatchChange, voice } = useContext(PatchContext)
 
 	const { midi } = useContext(MidiContext)
@@ -29,11 +38,11 @@ const Encoder = ({ id, cx, cy, fill, cx2, cy2 }) => {
 		}
 	}, [voice])
 
-	const handleMouse = (e) => {
+	const handleMouse = (e: React.MouseEvent) => {
 		document.body.style.cursor = 'grabbing'
 		const startY = e.clientY
 
-		const handleMove = (e) => {
+		const handleMove = (e: MouseEvent) => {
 			const maxRange = 269
 			let offsetY = (startY - e.clientY) * 2.5
 
