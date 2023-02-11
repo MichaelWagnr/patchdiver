@@ -5,7 +5,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 
-const Header = ({ theme, setTheme }) => {
+type Props = {
+	theme: string
+	setTheme: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Header = ({ theme, setTheme }: Props) => {
 	const { user, setUser } = useContext(UserContext)
 	const navigate = useNavigate()
 	const location = useLocation()
