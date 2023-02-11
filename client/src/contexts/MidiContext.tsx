@@ -1,7 +1,10 @@
 import { createContext, ReactNode, useState } from 'react'
 import { midiObject } from '../types'
 
-export const MidiContext = createContext(null)
+export const MidiContext = createContext<{
+	midi: midiObject
+	requestMidi: () => void
+} | null>(null)
 
 const MidiProvider = ({ children }: { children: ReactNode }) => {
 	const [midi, setMidi] = useState<midiObject | null>(null)
