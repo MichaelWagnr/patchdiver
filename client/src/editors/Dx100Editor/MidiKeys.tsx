@@ -2,7 +2,12 @@ import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { MidiContext } from '../../contexts/MidiContext'
 
-const MidiKeys = ({ editorIsActive, menuIsActive }) => {
+type Props = {
+	editorIsActive: boolean
+	menuIsActive: boolean
+}
+
+const MidiKeys = ({ editorIsActive, menuIsActive }: Props) => {
 	const { midi } = useContext(MidiContext)
 
 	const notes = {
@@ -23,7 +28,7 @@ const MidiKeys = ({ editorIsActive, menuIsActive }) => {
 
 	const validKeys = Object.keys(notes)
 
-	const handleKeyDown = (e) => {
+	const handleKeyDown = (e: KeyboardEvent) => {
 		if (
 			editorIsActive &&
 			!menuIsActive &&
@@ -34,7 +39,7 @@ const MidiKeys = ({ editorIsActive, menuIsActive }) => {
 		}
 	}
 
-	const handleKeyUp = (e) => {
+	const handleKeyUp = (e: KeyboardEvent) => {
 		if (
 			editorIsActive &&
 			!menuIsActive &&
