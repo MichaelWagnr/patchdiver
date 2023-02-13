@@ -3,8 +3,29 @@ import { TbTag } from 'react-icons/tb'
 import { BiLike } from 'react-icons/bi'
 import { useContext, useEffect, useState } from 'react'
 import { PatchContext } from '../../contexts/PatchContext'
-import { UserContext } from '../../contexts/UserContext'
 import parseVoice from '../../editors/Dx100Editor/utilities/Dx100.parseVoice'
+import { DX100SysexArr } from '../../types'
+
+type Props = {
+	setEditorIsActive: React.Dispatch<React.SetStateAction<boolean>>
+	editorIsActive: boolean
+	_id: string
+	created: string
+	userName: string
+	userAvatar: string
+	manufacturer: string
+	model: string
+	patchName: string
+	description: string
+	patchTag: string
+	genreTag: string
+	inspiredArtist: string
+	inspiredTrack: string
+	albumAvatar: string
+	likes: number
+	patchData: DX100SysexArr
+	user: any
+}
 
 const Patch = ({
 	setEditorIsActive,
@@ -25,7 +46,7 @@ const Patch = ({
 	likes,
 	patchData,
 	user,
-}) => {
+}: Props) => {
 	const { setVoice, setPatch } = useContext(PatchContext)
 
 	const [isLiked, setIsLiked] = useState(false)
@@ -70,7 +91,9 @@ const Patch = ({
 				onClick={(e) => {
 					e.stopPropagation()
 					setEditorIsActive(false)
-					e.target.parentElement.classList.remove('active')
+					;(e.target as HTMLButtonElement).parentElement.classList.remove(
+						'active'
+					)
 				}}>
 				×
 			</button>
@@ -86,7 +109,7 @@ const Patch = ({
 				onClick={(e) => {
 					handleVoiceLoad()
 					setEditorIsActive(true)
-					e.target.parentElement.classList.add('active')
+					;(e.target as HTMLButtonElement).parentElement.classList.add('active')
 				}}>
 				LAUNCH
 			</button>
@@ -279,14 +302,12 @@ const PatchCard = styled.div`
 		width: 2px;
 		height: 60px;
 		border-left: var(--vertical-border);
-		/* background: var(--primary-fg); */
 
 		grid-row: 1 / span 2;
 		grid-column: 4;
 	}
 
 	.description {
-		/* padding-right: 40px; */
 		grid-row: 1 / span 2;
 		grid-column: 5;
 
@@ -351,7 +372,6 @@ const PatchCard = styled.div`
 		grid-template-columns: 40px 60px 140px 100px 1fr 40px;
 		grid-template-rows: 50px;
 
-		/* align-content: center; */
 		--center: 11.5px;
 
 		.launch,
