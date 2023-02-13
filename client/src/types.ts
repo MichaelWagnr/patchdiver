@@ -508,6 +508,12 @@ export type DX100Patch = {
 	}
 }
 
+export type FilterObj = {
+	orderBy: string
+	genreTag: string
+	patchTag: string
+}
+
 export type DX100PatchDBModel = {
 	albumAvatar: string
 	created: string
