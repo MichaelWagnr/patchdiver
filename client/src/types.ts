@@ -507,3 +507,23 @@ export type DX100Patch = {
 		value: number
 	}
 }
+
+export type DX100PatchDBModel = {
+	albumAvatar: string
+	created: string
+	description: string
+	genreTag: string
+	inspiredArtist: string
+	inspiredTrack: string
+	likes: number
+	manufacturer: string
+	model: string
+	patchData: DX100SysexArr
+	patchName: string
+	patchTag: string
+	timestamp: string
+	userAvatar: string
+	userId: string
+	userName: string
+	_id: string
+}

@@ -7,14 +7,25 @@ import { UserContext } from '../../contexts/UserContext'
 import FilterForm from './FilterForm'
 import Patch from './Patch'
 import ProfileCard from './ProfileCard'
+import { DX100PatchDBModel } from '../../types'
 
-const Feed = ({ profileView }) => {
+type Props = {
+	profileView: boolean
+}
+
+type FilterObj = {
+	orderBy: 'mostRecent' | 'mostLiked'
+	genreTag: string
+	patchTag: string
+}
+
+const Feed = ({ profileView }: Props) => {
 	const [editorIsActive, setEditorIsActive] = useState(false)
-	const [patchArray, setPatchArray] = useState(null)
+	const [patchArray, setPatchArray] = useState<DX100PatchDBModel[] | null>(null)
 	const [noResultsStatus, setNoResultsStatus] = useState(false)
 	const { user } = useContext(UserContext)
 
-	const loadPatches = (filterData) => {
+	const loadPatches = (filterData: FilterObj) => {
 		setNoResultsStatus(false)
 
 		const endpoint = `${
@@ -33,9 +44,6 @@ const Feed = ({ profileView }) => {
 				if (data.status !== 200) setNoResultsStatus(true)
 				if (data.dbResponse.length === 0 && !profileView)
 					alert('No patches found, please adjust filter')
-				//TODO when filter results return an empty array it
-				//TODO would be nice to have the feed print an error
-				// if (data.dbResponse === []) setNoResultsStatus(true)
 				setPatchArray(data.dbResponse)
 			})
 			.catch((err) => {
@@ -44,7 +52,7 @@ const Feed = ({ profileView }) => {
 	}
 
 	useEffect(() => {
-		loadPatches()
+		loadPatches({ orderBy: 'mostRecent', genreTag: '', patchTag: '' })
 	}, [profileView])
 
 	return (
@@ -120,14 +128,8 @@ const FeedContainer = styled.section`
 `
 
 const EditorContainer = styled.div`
-	/* width: 100%; */
-	/* width: fit-content; */
 	position: absolute;
 	left: calc((100% - 1334px) / 2);
-	/* @media only screen and (min-width: 1334px) {
-		left: calc((100vw - 1334px) / 2);
-	} */
-	/* margin: 0px auto; */
 	top: 2000px;
 	opacity: 0;
 	overflow-x: scroll;
