@@ -6,17 +6,21 @@ import {
 	genreTags,
 	patchTags,
 } from '../../editors/Dx100Editor/Menu/Save/Form.tags'
+import { FilterObj } from '../../types'
 
-const FilterForm = ({ loadPatches }) => {
+type Props = {
+	loadPatches: (arg: FilterObj) => void
+}
+
+const FilterForm = ({ loadPatches }: Props) => {
 	const [filterIsActive, setFilterIsActive] = useState(false)
-	//TODO lift formData and setFormData state, so that filter persists between profile and main view
 	const [formData, setFormData] = useState({
 		orderBy: 'mostLiked',
 		genreTag: '',
 		patchTag: '',
 	})
 
-	const handleInputChange = (e) => {
+	const handleInputChange = (e: any) => {
 		const i = e.target
 		const { type, value } = e.target.dataset
 		if (type && value && value === formData[type]) {
