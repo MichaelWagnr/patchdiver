@@ -7,16 +7,10 @@ import { UserContext } from '../../contexts/UserContext'
 import FilterForm from './FilterForm'
 import Patch from './Patch'
 import ProfileCard from './ProfileCard'
-import { DX100PatchDBModel } from '../../types'
+import { DX100PatchDBModel, FilterObj } from '../../types'
 
 type Props = {
 	profileView: boolean
-}
-
-type FilterObj = {
-	orderBy: 'mostRecent' | 'mostLiked'
-	genreTag: string
-	patchTag: string
 }
 
 const Feed = ({ profileView }: Props) => {
