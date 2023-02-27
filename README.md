@@ -6,7 +6,7 @@
 <h5 align="center">Load, save, and edit patches for the Yamaha DX100 and related FM synths.</h5>
 <p align="center"><a href="https://www.patchdiver.com" target="_blank">View live application</a></p>
 
-<div style="display: flex; justify-content: center; gap: 10px;">
+<div align="center">
   <img width="40px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg" />
   <img width="40px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
   <img width="40px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
