@@ -42,4 +42,4 @@ Some expected future milestones include improvements to the sign-up process, 'fo
 
 ## 😊 Thank you for having a look at Patch Diver
 
-If you're interested in other projects I've worked on, please consider having a look at my <a href="https://www.michaelwagner.tech" target="_blank">**portfolio**</a>.
+If you're interested in other projects I've worked on, please consider having a look at my <a href="https://michaelwagner.tech" target="_blank">**portfolio**</a>.
