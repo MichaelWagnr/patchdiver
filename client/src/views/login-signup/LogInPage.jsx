@@ -73,6 +73,7 @@ const Container = styled.div`
 	display: grid;
 	height: 100vh;
 	min-width: 1440px;
+	position: relative;
 	gap: 100px;
 	grid-template-columns: 1fr 2fr;
 	place-content: center;
